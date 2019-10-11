@@ -32,7 +32,6 @@
                                 [item.resource.identifier UUIDString]
                                 ];
     [self sqlRequestWithDBPath:[self dataBasePath] db:rssDataBase request:[insertFeedItem UTF8String]];
-    
     return item;
 }
 
@@ -143,7 +142,5 @@
     const char *selectReadingCompliteFeedItemLinksStatement = [[NSString stringWithFormat:SELECT_READING_COMPLITE_FEEDITEM_URL, [self prepareQueryParameters:[NSUUID toString:resourcesIDs]]] UTF8String];
     return [self feedItemsLinks:resourcesIDs withDBPath:[self dataBasePath] db:rssDataBase request:selectReadingCompliteFeedItemLinksStatement];
 }
-
-
 
 @end

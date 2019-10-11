@@ -29,6 +29,4 @@
     [NSFileManager deleteAllTXTFiles];
 }
 
-
-
 @end

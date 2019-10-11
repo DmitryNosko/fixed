@@ -37,7 +37,6 @@
         [weakSelf.parser parse];
     }];
     [thread start];
-    
 }
 
 #pragma mark - NSXMLParserDelegate

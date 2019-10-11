@@ -19,5 +19,6 @@ extern NSString* const PUBDATE_TAG;
 extern NSString* const DESCRIPTION_TAG;
 extern NSString* const EMPTY_STRING;
 extern NSString* const PATTERN_FOR_VALIDATION;
+
 #endif /* RSSParserConstants_h */
 

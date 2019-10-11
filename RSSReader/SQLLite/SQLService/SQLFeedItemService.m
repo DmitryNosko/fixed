@@ -57,7 +57,7 @@ static NSString* const RESOURCE_IDENTIFIER = @"identifier";
     return [self.feedItemRepository allFeedItemsForResources:[resources valueForKey:RESOURCE_IDENTIFIER]];
 }
 
-- (void)updateFeedItem:(FeedItem *) item {
+- (void) updateFeedItem:(FeedItem *) item {
     [self.feedItemRepository updateFeedItem:item];
 }
 

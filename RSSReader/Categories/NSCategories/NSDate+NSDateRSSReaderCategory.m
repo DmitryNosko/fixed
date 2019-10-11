@@ -8,12 +8,14 @@
 
 #import "NSDate+NSDateRSSReaderCategory.h"
 
+static NSString* const DATE_FORMAT = @"EEE, dd MMM yyyy HH:mm:ss zzz";
+
 @implementation NSDate (NSDateRSSReaderCategory)
 
 - (NSString *) toString {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]]];
-    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss zzz"];
+    [dateFormatter setDateFormat:DATE_FORMAT];
     return [dateFormatter stringFromDate:self];
 }
 

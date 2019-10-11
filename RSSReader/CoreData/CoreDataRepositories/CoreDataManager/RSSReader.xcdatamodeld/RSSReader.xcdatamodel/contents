@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="CDFeedItem" representedClassName="CDFeedItem" syncable="YES" codeGenerationType="class">
+        <attribute name="enclosure" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isAvailable" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isReadingComplite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isReadingInProgress" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="itemDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itemTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pubDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="resourceURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="resource" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDFeedResource" inverseName="feedItems" inverseEntity="CDFeedResource" syncable="YES"/>
+    </entity>
+    <entity name="CDFeedResource" representedClassName="CDFeedResource" syncable="YES" codeGenerationType="class">
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="feedItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDFeedItem" inverseName="resource" inverseEntity="CDFeedItem" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CDFeedItem" positionX="-245.609375" positionY="-189.03515625" width="128" height="238"/>
+        <element name="CDFeedResource" positionX="-2.9609375" positionY="-54.0546875" width="128" height="103"/>
+    </elements>
+</model>

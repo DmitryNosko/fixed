@@ -25,7 +25,6 @@
 		78072728231EA501000BF435 /* FeedResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 78072727231EA501000BF435 /* FeedResource.m */; };
 		7807272C231EA651000BF435 /* FavoritesNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7807272B231EA651000BF435 /* FavoritesNewsViewController.m */; };
 		7807272F231EA683000BF435 /* FavoritesNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7807272E231EA683000BF435 /* FavoritesNewsTableViewCell.m */; };
-		7807273E231FFBA1000BF435 /* ReachabilityStatusChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7807273D231FFBA1000BF435 /* ReachabilityStatusChecker.m */; };
 		7808F58B23472DAD00A20F61 /* FeedItemServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F58A23472DAD00A20F61 /* FeedItemServiceFactory.m */; };
 		7808F58E23473D2D00A20F61 /* FeedResourceServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F58D23473D2D00A20F61 /* FeedResourceServiceFactory.m */; };
 		7808F593234745D500A20F61 /* DataSourceMigratorFactory1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F592234745D500A20F61 /* DataSourceMigratorFactory1.m */; };
@@ -39,6 +38,26 @@
 		7808F5B92347A44C00A20F61 /* RSSURLValidatorConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5B82347A44B00A20F61 /* RSSURLValidatorConstants.m */; };
 		7808F5BC2347A5BE00A20F61 /* FeedItemConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5BB2347A5BE00A20F61 /* FeedItemConstants.m */; };
 		7808F5BF2347A6B000A20F61 /* FeedResourceConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5BE2347A6B000A20F61 /* FeedResourceConstants.m */; };
+		7808F5C4234B39A900A20F61 /* DetailsViewControllerConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5C3234B39A900A20F61 /* DetailsViewControllerConstants.m */; };
+		7808F5C7234B3A4600A20F61 /* InternetConnectionConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5C6234B3A4600A20F61 /* InternetConnectionConstants.m */; };
+		7808F5CA234B3ABB00A20F61 /* WebViewControllerConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5C9234B3ABB00A20F61 /* WebViewControllerConstants.m */; };
+		7808F5CE234B3B0600A20F61 /* Reachability+ReachabilityCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5CD234B3B0600A20F61 /* Reachability+ReachabilityCategory.m */; };
+		7808F5D1234B3B4600A20F61 /* UIButtonWithBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5D0234B3B4600A20F61 /* UIButtonWithBlock.m */; };
+		7808F5D4234B3BFC00A20F61 /* UIAlertController+UIAlertControllerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5D3234B3BFC00A20F61 /* UIAlertController+UIAlertControllerCategory.m */; };
+		7808F5D7234B3C2D00A20F61 /* UIBarButtonItem+UIBarButtonItemCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5D6234B3C2D00A20F61 /* UIBarButtonItem+UIBarButtonItemCategory.m */; };
+		7808F5DA234B3C6000A20F61 /* UILabel+UILabelCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5D9234B3C6000A20F61 /* UILabel+UILabelCategory.m */; };
+		7808F5DD234B4AFC00A20F61 /* MainViewControllerConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5DC234B4AFC00A20F61 /* MainViewControllerConstants.m */; };
+		7808F5E0234B515200A20F61 /* UITableView+UITableViewCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5DF234B515200A20F61 /* UITableView+UITableViewCategory.m */; };
+		7808F5E4234B5B9900A20F61 /* MenuViewControllerConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5E3234B5B9900A20F61 /* MenuViewControllerConstants.m */; };
+		7808F5E7234B72D700A20F61 /* UISegmentedControl+UISegmentedControlCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5E6234B72D700A20F61 /* UISegmentedControl+UISegmentedControlCategory.m */; };
+		7808F5EA234B791000A20F61 /* UIVisualEffectView+UIVisualEffectViewCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5E9234B791000A20F61 /* UIVisualEffectView+UIVisualEffectViewCategory.m */; };
+		7808F5EE234F1A1C00A20F61 /* CoreDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5ED234F1A1C00A20F61 /* CoreDataController.m */; };
+		7808F5F2234F5C6200A20F61 /* CoreDataFeedItemService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5F1234F5C6200A20F61 /* CoreDataFeedItemService.m */; };
+		7808F5F5234F5C7200A20F61 /* CoreDataFeedResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5F4234F5C7200A20F61 /* CoreDataFeedResourceService.m */; };
+		7808F5FA234F5D4600A20F61 /* CoreDataFeedItemRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5F9234F5D4600A20F61 /* CoreDataFeedItemRepository.m */; };
+		7808F5FE234F5D6300A20F61 /* CoreDataFeedResourceRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5FD234F5D6300A20F61 /* CoreDataFeedResourceRepository.m */; };
+		7808F6042350CC8300A20F61 /* SQLMIgrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F6032350CC8300A20F61 /* SQLMIgrator.m */; };
+		7808F6072350CC9100A20F61 /* FileMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F6062350CC9100A20F61 /* FileMigrator.m */; };
 		7865E8452328D5F500111BF3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7865E8442328D5F500111BF3 /* libsqlite3.tbd */; };
 		7865E873232BCD4200111BF3 /* SQLFeedResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E872232BCD4200111BF3 /* SQLFeedResourceService.m */; };
 		7865E876232BCD6F00111BF3 /* SQLFeedItemRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E875232BCD6F00111BF3 /* SQLFeedItemRepository.m */; };
@@ -93,8 +112,6 @@
 		7807272B231EA651000BF435 /* FavoritesNewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoritesNewsViewController.m; sourceTree = "<group>"; };
 		7807272D231EA683000BF435 /* FavoritesNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoritesNewsTableViewCell.h; sourceTree = "<group>"; };
 		7807272E231EA683000BF435 /* FavoritesNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoritesNewsTableViewCell.m; sourceTree = "<group>"; };
-		7807273C231FFBA1000BF435 /* ReachabilityStatusChecker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityStatusChecker.h; sourceTree = "<group>"; };
-		7807273D231FFBA1000BF435 /* ReachabilityStatusChecker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReachabilityStatusChecker.m; sourceTree = "<group>"; };
 		7808F58923472DAD00A20F61 /* FeedItemServiceFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedItemServiceFactory.h; sourceTree = "<group>"; };
 		7808F58A23472DAD00A20F61 /* FeedItemServiceFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedItemServiceFactory.m; sourceTree = "<group>"; };
 		7808F58C23473D2D00A20F61 /* FeedResourceServiceFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedResourceServiceFactory.h; sourceTree = "<group>"; };
@@ -121,6 +138,47 @@
 		7808F5BB2347A5BE00A20F61 /* FeedItemConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedItemConstants.m; sourceTree = "<group>"; };
 		7808F5BD2347A69F00A20F61 /* FeedResourceConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedResourceConstants.h; sourceTree = "<group>"; };
 		7808F5BE2347A6B000A20F61 /* FeedResourceConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedResourceConstants.m; sourceTree = "<group>"; };
+		7808F5C2234B399800A20F61 /* DetailsViewControllerConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewControllerConstants.h; sourceTree = "<group>"; };
+		7808F5C3234B39A900A20F61 /* DetailsViewControllerConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewControllerConstants.m; sourceTree = "<group>"; };
+		7808F5C5234B3A3C00A20F61 /* InternetConnectionConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InternetConnectionConstants.h; sourceTree = "<group>"; };
+		7808F5C6234B3A4600A20F61 /* InternetConnectionConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InternetConnectionConstants.m; sourceTree = "<group>"; };
+		7808F5C8234B3AB100A20F61 /* WebViewControllerConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewControllerConstants.h; sourceTree = "<group>"; };
+		7808F5C9234B3ABB00A20F61 /* WebViewControllerConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewControllerConstants.m; sourceTree = "<group>"; };
+		7808F5CC234B3B0600A20F61 /* Reachability+ReachabilityCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reachability+ReachabilityCategory.h"; sourceTree = "<group>"; };
+		7808F5CD234B3B0600A20F61 /* Reachability+ReachabilityCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Reachability+ReachabilityCategory.m"; sourceTree = "<group>"; };
+		7808F5CF234B3B4600A20F61 /* UIButtonWithBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIButtonWithBlock.h; sourceTree = "<group>"; };
+		7808F5D0234B3B4600A20F61 /* UIButtonWithBlock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIButtonWithBlock.m; sourceTree = "<group>"; };
+		7808F5D2234B3BFC00A20F61 /* UIAlertController+UIAlertControllerCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+UIAlertControllerCategory.h"; sourceTree = "<group>"; };
+		7808F5D3234B3BFC00A20F61 /* UIAlertController+UIAlertControllerCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+UIAlertControllerCategory.m"; sourceTree = "<group>"; };
+		7808F5D5234B3C2D00A20F61 /* UIBarButtonItem+UIBarButtonItemCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+UIBarButtonItemCategory.h"; sourceTree = "<group>"; };
+		7808F5D6234B3C2D00A20F61 /* UIBarButtonItem+UIBarButtonItemCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+UIBarButtonItemCategory.m"; sourceTree = "<group>"; };
+		7808F5D8234B3C6000A20F61 /* UILabel+UILabelCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+UILabelCategory.h"; sourceTree = "<group>"; };
+		7808F5D9234B3C6000A20F61 /* UILabel+UILabelCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+UILabelCategory.m"; sourceTree = "<group>"; };
+		7808F5DB234B4AE700A20F61 /* MainViewControllerConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewControllerConstants.h; sourceTree = "<group>"; };
+		7808F5DC234B4AFC00A20F61 /* MainViewControllerConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewControllerConstants.m; sourceTree = "<group>"; };
+		7808F5DE234B515200A20F61 /* UITableView+UITableViewCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+UITableViewCategory.h"; sourceTree = "<group>"; };
+		7808F5DF234B515200A20F61 /* UITableView+UITableViewCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+UITableViewCategory.m"; sourceTree = "<group>"; };
+		7808F5E2234B5AF700A20F61 /* MenuViewControlellerConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewControlellerConstants.h; sourceTree = "<group>"; };
+		7808F5E3234B5B9900A20F61 /* MenuViewControllerConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewControllerConstants.m; sourceTree = "<group>"; };
+		7808F5E5234B72D700A20F61 /* UISegmentedControl+UISegmentedControlCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UISegmentedControl+UISegmentedControlCategory.h"; sourceTree = "<group>"; };
+		7808F5E6234B72D700A20F61 /* UISegmentedControl+UISegmentedControlCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UISegmentedControl+UISegmentedControlCategory.m"; sourceTree = "<group>"; };
+		7808F5E8234B791000A20F61 /* UIVisualEffectView+UIVisualEffectViewCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIVisualEffectView+UIVisualEffectViewCategory.h"; sourceTree = "<group>"; };
+		7808F5E9234B791000A20F61 /* UIVisualEffectView+UIVisualEffectViewCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIVisualEffectView+UIVisualEffectViewCategory.m"; sourceTree = "<group>"; };
+		7808F5EC234F1A1C00A20F61 /* CoreDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataController.h; sourceTree = "<group>"; };
+		7808F5ED234F1A1C00A20F61 /* CoreDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataController.m; sourceTree = "<group>"; };
+		7808F5F0234F5C6200A20F61 /* CoreDataFeedItemService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataFeedItemService.h; sourceTree = "<group>"; };
+		7808F5F1234F5C6200A20F61 /* CoreDataFeedItemService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataFeedItemService.m; sourceTree = "<group>"; };
+		7808F5F3234F5C7200A20F61 /* CoreDataFeedResourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataFeedResourceService.h; sourceTree = "<group>"; };
+		7808F5F4234F5C7200A20F61 /* CoreDataFeedResourceService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataFeedResourceService.m; sourceTree = "<group>"; };
+		7808F5F8234F5D4600A20F61 /* CoreDataFeedItemRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataFeedItemRepository.h; sourceTree = "<group>"; };
+		7808F5F9234F5D4600A20F61 /* CoreDataFeedItemRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataFeedItemRepository.m; sourceTree = "<group>"; };
+		7808F5FC234F5D6300A20F61 /* CoreDataFeedResourceRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataFeedResourceRepository.h; sourceTree = "<group>"; };
+		7808F5FD234F5D6300A20F61 /* CoreDataFeedResourceRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataFeedResourceRepository.m; sourceTree = "<group>"; };
+		7808F6012350C6ED00A20F61 /* DataSourceMigratorProtocol1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataSourceMigratorProtocol1.h; sourceTree = "<group>"; };
+		7808F6022350CC8300A20F61 /* SQLMIgrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLMIgrator.h; sourceTree = "<group>"; };
+		7808F6032350CC8300A20F61 /* SQLMIgrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLMIgrator.m; sourceTree = "<group>"; };
+		7808F6052350CC9100A20F61 /* FileMigrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileMigrator.h; sourceTree = "<group>"; };
+		7808F6062350CC9100A20F61 /* FileMigrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileMigrator.m; sourceTree = "<group>"; };
 		7865E8442328D5F500111BF3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7865E871232BCD4200111BF3 /* SQLFeedResourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLFeedResourceService.h; sourceTree = "<group>"; };
 		7865E872232BCD4200111BF3 /* SQLFeedResourceService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLFeedResourceService.m; sourceTree = "<group>"; };
@@ -197,18 +255,13 @@
 				7865E8D72334C9C500111BF3 /* DataMigrateFactory */,
 				7865E8C92334C86400111BF3 /* DataMigrateService */,
 				7865E8C22334C7FA00111BF3 /* StoragesFactory */,
-				7865E8BF2334C78F00111BF3 /* StorageService */,
+				7808F5EB234F192900A20F61 /* CoreData */,
 				7865E863232BCBA400111BF3 /* SQLLite */,
 				78072722231EA429000BF435 /* FileStorage */,
 				780726F12319123F000BF435 /* Networking */,
 				780726F02319122D000BF435 /* RSSParser */,
 				780726EF23191207000BF435 /* Model */,
-				780726EE231911F3000BF435 /* DetailsViewController */,
-				780726ED231911E5000BF435 /* WebViewController */,
-				780726EC231911CF000BF435 /* ContainerViewController */,
-				780726EB231911B9000BF435 /* MainViewController */,
-				780726EA23191192000BF435 /* MenuViewController */,
-				78072729231EA611000BF435 /* FavoritesNewsViewController */,
+				7808F5EF234F5B2B00A20F61 /* ViewControllers */,
 				780272952313EBFF00EB860B /* AppDelegate.h */,
 				780272962313EBFF00EB860B /* AppDelegate.m */,
 				7802729B2313EBFF00EB860B /* Main.storyboard */,
@@ -216,7 +269,6 @@
 				780272A32313EC0100EB860B /* LaunchScreen.storyboard */,
 				780272A62313EC0100EB860B /* Info.plist */,
 				780272A72313EC0100EB860B /* main.m */,
-				7802729E2313EC0000EB860B /* RSSReader.xcdatamodeld */,
 			);
 			path = RSSReader;
 			sourceTree = "<group>";
@@ -300,8 +352,6 @@
 			children = (
 				78FD5E54231537DF00510D99 /* Reachability.h */,
 				78FD5E55231537DF00510D99 /* Reachability.m */,
-				7807273C231FFBA1000BF435 /* ReachabilityStatusChecker.h */,
-				7807273D231FFBA1000BF435 /* ReachabilityStatusChecker.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -364,6 +414,18 @@
 		7808F59523476C6300A20F61 /* UICategories */ = {
 			isa = PBXGroup;
 			children = (
+				7808F5D2234B3BFC00A20F61 /* UIAlertController+UIAlertControllerCategory.h */,
+				7808F5D3234B3BFC00A20F61 /* UIAlertController+UIAlertControllerCategory.m */,
+				7808F5D5234B3C2D00A20F61 /* UIBarButtonItem+UIBarButtonItemCategory.h */,
+				7808F5D6234B3C2D00A20F61 /* UIBarButtonItem+UIBarButtonItemCategory.m */,
+				7808F5D8234B3C6000A20F61 /* UILabel+UILabelCategory.h */,
+				7808F5D9234B3C6000A20F61 /* UILabel+UILabelCategory.m */,
+				7808F5DE234B515200A20F61 /* UITableView+UITableViewCategory.h */,
+				7808F5DF234B515200A20F61 /* UITableView+UITableViewCategory.m */,
+				7808F5E5234B72D700A20F61 /* UISegmentedControl+UISegmentedControlCategory.h */,
+				7808F5E6234B72D700A20F61 /* UISegmentedControl+UISegmentedControlCategory.m */,
+				7808F5E8234B791000A20F61 /* UIVisualEffectView+UIVisualEffectViewCategory.h */,
+				7808F5E9234B791000A20F61 /* UIVisualEffectView+UIVisualEffectViewCategory.m */,
 			);
 			path = UICategories;
 			sourceTree = "<group>";
@@ -385,6 +447,16 @@
 				7808F5BB2347A5BE00A20F61 /* FeedItemConstants.m */,
 				7808F5BD2347A69F00A20F61 /* FeedResourceConstants.h */,
 				7808F5BE2347A6B000A20F61 /* FeedResourceConstants.m */,
+				7808F5C2234B399800A20F61 /* DetailsViewControllerConstants.h */,
+				7808F5C3234B39A900A20F61 /* DetailsViewControllerConstants.m */,
+				7808F5C5234B3A3C00A20F61 /* InternetConnectionConstants.h */,
+				7808F5C6234B3A4600A20F61 /* InternetConnectionConstants.m */,
+				7808F5C8234B3AB100A20F61 /* WebViewControllerConstants.h */,
+				7808F5C9234B3ABB00A20F61 /* WebViewControllerConstants.m */,
+				7808F5DB234B4AE700A20F61 /* MainViewControllerConstants.h */,
+				7808F5DC234B4AFC00A20F61 /* MainViewControllerConstants.m */,
+				7808F5E2234B5AF700A20F61 /* MenuViewControlellerConstants.h */,
+				7808F5E3234B5B9900A20F61 /* MenuViewControllerConstants.m */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -394,6 +466,93 @@
 			children = (
 			);
 			path = ThreadManager;
+			sourceTree = "<group>";
+		};
+		7808F5CB234B3AF400A20F61 /* OtherClasses */ = {
+			isa = PBXGroup;
+			children = (
+				7808F5CC234B3B0600A20F61 /* Reachability+ReachabilityCategory.h */,
+				7808F5CD234B3B0600A20F61 /* Reachability+ReachabilityCategory.m */,
+				7808F5CF234B3B4600A20F61 /* UIButtonWithBlock.h */,
+				7808F5D0234B3B4600A20F61 /* UIButtonWithBlock.m */,
+			);
+			path = OtherClasses;
+			sourceTree = "<group>";
+		};
+		7808F5EB234F192900A20F61 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				7808F5F7234F5D2600A20F61 /* CoreDataRepositories */,
+				7808F5F6234F5C8400A20F61 /* CoreDataService */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		7808F5EF234F5B2B00A20F61 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				78072729231EA611000BF435 /* FavoritesNewsViewController */,
+				780726EA23191192000BF435 /* MenuViewController */,
+				780726EB231911B9000BF435 /* MainViewController */,
+				780726EC231911CF000BF435 /* ContainerViewController */,
+				780726ED231911E5000BF435 /* WebViewController */,
+				780726EE231911F3000BF435 /* DetailsViewController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7808F5F6234F5C8400A20F61 /* CoreDataService */ = {
+			isa = PBXGroup;
+			children = (
+				7808F5F0234F5C6200A20F61 /* CoreDataFeedItemService.h */,
+				7808F5F1234F5C6200A20F61 /* CoreDataFeedItemService.m */,
+				7808F5F3234F5C7200A20F61 /* CoreDataFeedResourceService.h */,
+				7808F5F4234F5C7200A20F61 /* CoreDataFeedResourceService.m */,
+			);
+			path = CoreDataService;
+			sourceTree = "<group>";
+		};
+		7808F5F7234F5D2600A20F61 /* CoreDataRepositories */ = {
+			isa = PBXGroup;
+			children = (
+				7808F600234F5F8300A20F61 /* CoreDataManager */,
+				7808F5F8234F5D4600A20F61 /* CoreDataFeedItemRepository.h */,
+				7808F5F9234F5D4600A20F61 /* CoreDataFeedItemRepository.m */,
+				7808F5FC234F5D6300A20F61 /* CoreDataFeedResourceRepository.h */,
+				7808F5FD234F5D6300A20F61 /* CoreDataFeedResourceRepository.m */,
+			);
+			path = CoreDataRepositories;
+			sourceTree = "<group>";
+		};
+		7808F5FF234F5F6200A20F61 /* SQLManager */ = {
+			isa = PBXGroup;
+			children = (
+				7808F5A0234775F100A20F61 /* SQLManager.h */,
+				7808F5A1234775F100A20F61 /* SQLManager.m */,
+			);
+			path = SQLManager;
+			sourceTree = "<group>";
+		};
+		7808F600234F5F8300A20F61 /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				7808F5EC234F1A1C00A20F61 /* CoreDataController.h */,
+				7808F5ED234F1A1C00A20F61 /* CoreDataController.m */,
+				7802729E2313EC0000EB860B /* RSSReader.xcdatamodeld */,
+			);
+			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
+		7808F6082350CCA400A20F61 /* new */ = {
+			isa = PBXGroup;
+			children = (
+				7808F6012350C6ED00A20F61 /* DataSourceMigratorProtocol1.h */,
+				7808F6022350CC8300A20F61 /* SQLMIgrator.h */,
+				7808F6032350CC8300A20F61 /* SQLMIgrator.m */,
+				7808F6052350CC9100A20F61 /* FileMigrator.h */,
+				7808F6062350CC9100A20F61 /* FileMigrator.m */,
+			);
+			path = new;
 			sourceTree = "<group>";
 		};
 		7865E8432328D5F500111BF3 /* Frameworks */ = {
@@ -427,8 +586,7 @@
 		7865E867232BCC8400111BF3 /* SQLRepositories */ = {
 			isa = PBXGroup;
 			children = (
-				7808F5A0234775F100A20F61 /* SQLManager.h */,
-				7808F5A1234775F100A20F61 /* SQLManager.m */,
+				7808F5FF234F5F6200A20F61 /* SQLManager */,
 				7865E874232BCD6F00111BF3 /* SQLFeedItemRepository.h */,
 				7865E875232BCD6F00111BF3 /* SQLFeedItemRepository.m */,
 				7865E877232BCD9800111BF3 /* SQLFeedResourceRepository.h */,
@@ -459,13 +617,6 @@
 			path = FileRepository;
 			sourceTree = "<group>";
 		};
-		7865E8BF2334C78F00111BF3 /* StorageService */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = StorageService;
-			sourceTree = "<group>";
-		};
 		7865E8C22334C7FA00111BF3 /* StoragesFactory */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,6 +629,7 @@
 		7865E8C92334C86400111BF3 /* DataMigrateService */ = {
 			isa = PBXGroup;
 			children = (
+				7808F6082350CCA400A20F61 /* new */,
 				7865E8CA2334C88A00111BF3 /* DataSourceMigratorProtocol.h */,
 				7865E8D12334C91500111BF3 /* SQLToFileDataSourceMigrator.h */,
 				7865E8D22334C91500111BF3 /* SQLToFileDataSourceMigrator.m */,
@@ -501,6 +653,7 @@
 		7865E8DB2334CA0C00111BF3 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				7808F5CB234B3AF400A20F61 /* OtherClasses */,
 				7808F59523476C6300A20F61 /* UICategories */,
 				7808F59423476C5100A20F61 /* NSCategories */,
 			);
@@ -577,13 +730,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7808F5D4234B3BFC00A20F61 /* UIAlertController+UIAlertControllerCategory.m in Sources */,
+				7808F5E7234B72D700A20F61 /* UISegmentedControl+UISegmentedControlCategory.m in Sources */,
+				7808F5FE234F5D6300A20F61 /* CoreDataFeedResourceRepository.m in Sources */,
 				7865E8DA2334C9EC00111BF3 /* DataSourceMigratorFactory.m in Sources */,
+				7808F5CA234B3ABB00A20F61 /* WebViewControllerConstants.m in Sources */,
+				7808F6042350CC8300A20F61 /* SQLMIgrator.m in Sources */,
 				7808F5A2234775F100A20F61 /* SQLManager.m in Sources */,
 				7865E879232BCD9800111BF3 /* SQLFeedResourceRepository.m in Sources */,
+				7808F5EA234B791000A20F61 /* UIVisualEffectView+UIVisualEffectViewCategory.m in Sources */,
 				780272A02313EC0000EB860B /* RSSReader.xcdatamodeld in Sources */,
+				7808F5C7234B3A4600A20F61 /* InternetConnectionConstants.m in Sources */,
 				7865E8B52334C6EF00111BF3 /* FileFeedItemService.m in Sources */,
 				7807272F231EA683000BF435 /* FavoritesNewsTableViewCell.m in Sources */,
 				7865E8E12334CA4600111BF3 /* NSString+NSStringDateCategory.m in Sources */,
+				7808F5DA234B3C6000A20F61 /* UILabel+UILabelCategory.m in Sources */,
 				7808F5B62347A1F900A20F61 /* RSSParserConstants.m in Sources */,
 				780272BE23141E7300EB860B /* WebViewController.m in Sources */,
 				7808F58E23473D2D00A20F61 /* FeedResourceServiceFactory.m in Sources */,
@@ -594,33 +755,44 @@
 				7808F5BC2347A5BE00A20F61 /* FeedItemConstants.m in Sources */,
 				7865E8D62334C9A000111BF3 /* FileToSQLDatasourceMigrator.m in Sources */,
 				78FD5E502315036400510D99 /* MainTableViewCell.m in Sources */,
-				7807273E231FFBA1000BF435 /* ReachabilityStatusChecker.m in Sources */,
 				7865E876232BCD6F00111BF3 /* SQLFeedItemRepository.m in Sources */,
 				7865E8BB2334C73F00111BF3 /* FileFeedResourceRepository.m in Sources */,
 				7808F5B223479A5C00A20F61 /* SQLManagerConstants.m in Sources */,
 				7808F5AF234792CA00A20F61 /* SQLFeedResourceRepositoryConstants.m in Sources */,
 				780272A82313EC0100EB860B /* main.m in Sources */,
+				7808F5DD234B4AFC00A20F61 /* MainViewControllerConstants.m in Sources */,
 				7808F5AB2347912F00A20F61 /* SQLFeedItemRepositoryConstants.m in Sources */,
 				7865E8DE2334CA3200111BF3 /* NSDate+NSDateRSSReaderCategory.m in Sources */,
+				7808F5D1234B3B4600A20F61 /* UIButtonWithBlock.m in Sources */,
 				7808F5BF2347A6B000A20F61 /* FeedResourceConstants.m in Sources */,
 				7865E8B02334C4F700111BF3 /* SQLFeedItemService.m in Sources */,
 				78FD5E5323152A1A00510D99 /* DetailsViewController.m in Sources */,
+				7808F5C4234B39A900A20F61 /* DetailsViewControllerConstants.m in Sources */,
 				780726E923191183000BF435 /* MenuHeaderView.m in Sources */,
 				7808F5A523477E0100A20F61 /* NSUUID+NSUUIDCategory.m in Sources */,
 				7865E8B82334C6FD00111BF3 /* FileFeedResourceService.m in Sources */,
 				7865E873232BCD4200111BF3 /* SQLFeedResourceService.m in Sources */,
+				7808F5EE234F1A1C00A20F61 /* CoreDataController.m in Sources */,
+				7808F5D7234B3C2D00A20F61 /* UIBarButtonItem+UIBarButtonItemCategory.m in Sources */,
 				780272972313EBFF00EB860B /* AppDelegate.m in Sources */,
 				7865E8BE2334C75000111BF3 /* FileFeedItemRepository.m in Sources */,
+				7808F6072350CC9100A20F61 /* FileMigrator.m in Sources */,
+				7808F5F2234F5C6200A20F61 /* CoreDataFeedItemService.m in Sources */,
 				780726DD2317FAAF000BF435 /* MenuViewController.m in Sources */,
 				7808F5B92347A44C00A20F61 /* RSSURLValidatorConstants.m in Sources */,
 				780726E023180938000BF435 /* MenuTableViewCell.m in Sources */,
+				7808F5F5234F5C7200A20F61 /* CoreDataFeedResourceService.m in Sources */,
 				7865E8D32334C91500111BF3 /* SQLToFileDataSourceMigrator.m in Sources */,
+				7808F5E0234B515200A20F61 /* UITableView+UITableViewCategory.m in Sources */,
 				78072725231EA4A3000BF435 /* RSSURLValidator.m in Sources */,
 				780272B52313F5FA00EB860B /* MainViewController.m in Sources */,
 				7808F58B23472DAD00A20F61 /* FeedItemServiceFactory.m in Sources */,
+				7808F5E4234B5B9900A20F61 /* MenuViewControllerConstants.m in Sources */,
 				78072728231EA501000BF435 /* FeedResource.m in Sources */,
 				780726E3231901DA000BF435 /* FeedItem.m in Sources */,
 				7807272C231EA651000BF435 /* FavoritesNewsViewController.m in Sources */,
+				7808F5FA234F5D4600A20F61 /* CoreDataFeedItemRepository.m in Sources */,
+				7808F5CE234B3B0600A20F61 /* Reachability+ReachabilityCategory.m in Sources */,
 				7808F59823476C7E00A20F61 /* NSFileManager+NSFileManagerCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

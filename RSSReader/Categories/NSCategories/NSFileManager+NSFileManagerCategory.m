@@ -32,10 +32,14 @@ static NSString* const TXT_FILE_EXTENSION = @"txt";
     while ((filename = [e nextObject])) {
         
         if ([[filename pathExtension] isEqualToString:format]) {
-
+            
             [fileManager removeItemAtPath:[documentsDirectory stringByAppendingPathComponent:filename] error:NULL];
         }
     }
+}
+
++ (NSURL *) applicationDocumentDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 + (NSString *) documentDirectoryPath {

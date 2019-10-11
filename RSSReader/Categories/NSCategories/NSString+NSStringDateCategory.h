@@ -10,5 +10,6 @@
 
 @interface NSString (NSStringDateCategory)
 - (NSDate *)toDate;
++ (NSString*) correctDescription:(NSString *) string;
 @end
 
