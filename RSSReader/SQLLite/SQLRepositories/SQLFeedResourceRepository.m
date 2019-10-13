@@ -14,7 +14,7 @@
 #pragma mark - FeedResource Requests
 
 - (FeedResource *) addFeedResource:(FeedResource *) resource {
-    const char *insertStatement = [[NSString stringWithFormat:INSERT_FEEDRESOURCE_SQL, [resource.identifier UUIDString], resource.name, resource.url.absoluteString] UTF8String];
+    const char *insertStatement = [[NSString stringWithFormat:INSERT_FEEDRESOURCE_SQL, [resource.identifier UUIDString], resource.name, [resource.url absoluteString]] UTF8String];
     [self sqlRequestWithDBPath:[self dataBasePath] db:rssDataBase request:insertStatement];
     return resource;
 }

@@ -29,5 +29,6 @@ extern NSString* const ONE_WEEK_TIME_RANGE;
 extern NSString* const ONE_MONTH_TIME_RANGE;
 extern NSString* const CLEAR_STAR_BUTTON_IMAGE;
 extern NSString* const NEW_STATEMENT_FOR_NEWS;
+extern NSString* const CORE_DATA_STORAGE_NAME;
 #endif /* MainViewControllerConstants_h */
 

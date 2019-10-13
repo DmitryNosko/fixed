@@ -9,12 +9,12 @@
 #import "FeedResourceServiceFactory.h"
 #import "FileFeedResourceService.h"
 #import "SQLFeedResourceService.h"
-//#import "CoreDataFeedResourceService.h"
+#import "CoreDataFeedResourceService.h"
 
 @interface FeedResourceServiceFactory()
 @property (strong, nonatomic) FileFeedResourceService* fileFeedResourceService;
 @property (strong, nonatomic) SQLFeedResourceService* sqlFeedResourceService;
-//@property (strong, nonatomic) CoreDataFeedResourceService* cdFeedResourceService;
+@property (strong, nonatomic) CoreDataFeedResourceService* cdFeedResourceService;
 @end
 
 @implementation FeedResourceServiceFactory
@@ -26,24 +26,24 @@
         _storageValue = value;
         _fileFeedResourceService = [[FileFeedResourceService alloc] init];
         _sqlFeedResourceService = [[SQLFeedResourceService alloc] init];
-        //_cdFeedResourceService = [[CoreDataFeedResourceService alloc] init];
+        _cdFeedResourceService = [[CoreDataFeedResourceService alloc] init];
     }
     return self;
 }
 
-- (id<FeedResourceServiceProtocol>) feedResourceServiceProtocol {
-    return self.storageValue.intValue == 0 ? self.fileFeedResourceService : self.sqlFeedResourceService;
-}
-
 //- (id<FeedResourceServiceProtocol>) feedResourceServiceProtocol {
-//    if (self.storageValue.intValue == 0) {
-//        return self.fileFeedResourceService;
-//    } else if (self.storageValue.intValue == 1) {
-//        return self.sqlFeedResourceService;
-//    } else {
-//        return self.cdFeedResourceService;
-//    }
+//    return self.storageValue.intValue == 0 ? self.fileFeedResourceService : self.sqlFeedResourceService;
 //}
+
+- (id<FeedResourceServiceProtocol>) feedResourceServiceProtocol {
+    if (self.storageValue.intValue == 0) {
+        return self.fileFeedResourceService;
+    } else if (self.storageValue.intValue == 1) {
+        return self.sqlFeedResourceService;
+    } else {
+        return self.cdFeedResourceService;
+    }
+}
 
 - (FeedResource *)addFeedResource:(FeedResource *)resource {
     return [[self feedResourceServiceProtocol] addFeedResource:resource];

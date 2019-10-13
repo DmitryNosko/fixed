@@ -28,10 +28,10 @@
 }
 
 - (void) setUp {
-    
     self.addResourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.addResourceButton setTitle:ADD_NEW_RESOURCE_TITLE forState:UIControlStateNormal];
     self.addResourceButton.backgroundColor = [UIColor darkGrayColor];
+    self.addResourceButton.titleLabel.numberOfLines = 0;
     [self.addResourceButton addTarget:self action:@selector(addResource:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.addResourceButton];
     
@@ -42,7 +42,6 @@
                                               [self.addResourceButton.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-10],
                                               [self.addResourceButton.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-10]
                                               ]];
-    
 }
 
 @end

@@ -16,7 +16,6 @@
 #import "Reachability+ReachabilityCategory.h"
 #import "FeedItemServiceFactory.h"
 #import "FeedResourceServiceFactory.h"
-#import "DataSourceMigratorFactory1.h"
 #import "DataSourceMigratorFactory.h"
 #import "DataSourceMigratorProtocol.h"
 #import "SQLFeedResourceService.h"
@@ -308,7 +307,7 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
     
     UILabel* chouseLocalDBLabel = [UILabel labelWithText:CHOUSE_STORAGE_FOR_NEWS andFontSize:14 parentView:self.settingsView.contentView textColor:[UIColor whiteColor] textAligment:NSTextAlignmentCenter];
     
-    self.switchStorageSegmentController = [UISegmentedControl controlWithItems:@[FILE_STORAGE_NAME, SQL_STORAGE_NAME] parentView:self.settingsView.contentView target:self action:@selector(changeStorage:)];
+    self.switchStorageSegmentController = [UISegmentedControl controlWithItems:@[FILE_STORAGE_NAME, SQL_STORAGE_NAME, CORE_DATA_STORAGE_NAME] parentView:self.settingsView.contentView target:self action:@selector(changeStorage:)];
     
     if ([NSUserDefaults.standardUserDefaults objectForKey:DATA_SOURCE_STRATEGY_ID]) {
         [self.switchStorageSegmentController setSelectedSegmentIndex:[[NSUserDefaults.standardUserDefaults objectForKey:DATA_SOURCE_STRATEGY_ID] integerValue]];
@@ -322,8 +321,8 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
     [NSLayoutConstraint activateConstraints:@[
                                               [self.settingsView.centerXAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerXAnchor],
                                               [self.settingsView.centerYAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.centerYAnchor],
-                                              [self.settingsView.heightAnchor constraintEqualToConstant:450],
-                                              [self.settingsView.widthAnchor constraintEqualToConstant:350]
+                                              [self.settingsView.heightAnchor constraintEqualToConstant:300],
+                                              [self.settingsView.widthAnchor constraintEqualToConstant:250]
                                               ]];
     
     chouseDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -388,9 +387,9 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
 
 - (void) changeStorage:(UISegmentedControl *) sender {
     NSNumber* dataSourceStrategyID = @(sender.selectedSegmentIndex);
+    [[[[DataSourceMigratorFactory alloc] initWithResourceService:self.feedResourceServiceFactory itemService:self.feedItemServiceFactory] dataSourceMigratorProtocol:dataSourceStrategyID] migrateData];
     self.feedItemServiceFactory = [[[FeedItemServiceFactory alloc] initWithStorageValue:dataSourceStrategyID] feedItemServiceProtocol];
     self.feedResourceServiceFactory = [[[FeedResourceServiceFactory alloc] initWithStorageValue:dataSourceStrategyID] feedResourceServiceProtocol];
-    [[[[DataSourceMigratorFactory alloc] init] dataSourceMigratorProtocol:dataSourceStrategyID] migrateData];
     
     NSDictionary* dictionary = [NSDictionary dictionaryWithObject:dataSourceStrategyID forKey:@"MainViewControllerStorageWasChangedNotification"];
     [[NSNotificationCenter defaultCenter] postNotificationName:MainViewControllerStorageWasChangedNotification

@@ -72,7 +72,7 @@
 }
 
 - (void)updateFeedItem:(FeedItem *)item { 
-    [self.cdFeedItemRepository removeFeedItem:item];
+    [self.cdFeedItemRepository updateFeedItem:item];
 }
 
 @end

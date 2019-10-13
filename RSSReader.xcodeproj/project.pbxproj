@@ -27,7 +27,6 @@
 		7807272F231EA683000BF435 /* FavoritesNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7807272E231EA683000BF435 /* FavoritesNewsTableViewCell.m */; };
 		7808F58B23472DAD00A20F61 /* FeedItemServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F58A23472DAD00A20F61 /* FeedItemServiceFactory.m */; };
 		7808F58E23473D2D00A20F61 /* FeedResourceServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F58D23473D2D00A20F61 /* FeedResourceServiceFactory.m */; };
-		7808F593234745D500A20F61 /* DataSourceMigratorFactory1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F592234745D500A20F61 /* DataSourceMigratorFactory1.m */; };
 		7808F59823476C7E00A20F61 /* NSFileManager+NSFileManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F59723476C7E00A20F61 /* NSFileManager+NSFileManagerCategory.m */; };
 		7808F5A2234775F100A20F61 /* SQLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5A1234775F100A20F61 /* SQLManager.m */; };
 		7808F5A523477E0100A20F61 /* NSUUID+NSUUIDCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5A423477E0100A20F61 /* NSUUID+NSUUIDCategory.m */; };
@@ -56,8 +55,6 @@
 		7808F5F5234F5C7200A20F61 /* CoreDataFeedResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5F4234F5C7200A20F61 /* CoreDataFeedResourceService.m */; };
 		7808F5FA234F5D4600A20F61 /* CoreDataFeedItemRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5F9234F5D4600A20F61 /* CoreDataFeedItemRepository.m */; };
 		7808F5FE234F5D6300A20F61 /* CoreDataFeedResourceRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5FD234F5D6300A20F61 /* CoreDataFeedResourceRepository.m */; };
-		7808F6042350CC8300A20F61 /* SQLMIgrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F6032350CC8300A20F61 /* SQLMIgrator.m */; };
-		7808F6072350CC9100A20F61 /* FileMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F6062350CC9100A20F61 /* FileMigrator.m */; };
 		7865E8452328D5F500111BF3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7865E8442328D5F500111BF3 /* libsqlite3.tbd */; };
 		7865E873232BCD4200111BF3 /* SQLFeedResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E872232BCD4200111BF3 /* SQLFeedResourceService.m */; };
 		7865E876232BCD6F00111BF3 /* SQLFeedItemRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E875232BCD6F00111BF3 /* SQLFeedItemRepository.m */; };
@@ -67,14 +64,15 @@
 		7865E8B82334C6FD00111BF3 /* FileFeedResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E8B72334C6FD00111BF3 /* FileFeedResourceService.m */; };
 		7865E8BB2334C73F00111BF3 /* FileFeedResourceRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E8BA2334C73F00111BF3 /* FileFeedResourceRepository.m */; };
 		7865E8BE2334C75000111BF3 /* FileFeedItemRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E8BD2334C75000111BF3 /* FileFeedItemRepository.m */; };
-		7865E8D32334C91500111BF3 /* SQLToFileDataSourceMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E8D22334C91500111BF3 /* SQLToFileDataSourceMigrator.m */; };
-		7865E8D62334C9A000111BF3 /* FileToSQLDatasourceMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E8D52334C9A000111BF3 /* FileToSQLDatasourceMigrator.m */; };
+		7865E8D32334C91500111BF3 /* FileDataSourceMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E8D22334C91500111BF3 /* FileDataSourceMigrator.m */; };
+		7865E8D62334C9A000111BF3 /* SQLDatasourceMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E8D52334C9A000111BF3 /* SQLDatasourceMigrator.m */; };
 		7865E8DA2334C9EC00111BF3 /* DataSourceMigratorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E8D92334C9EC00111BF3 /* DataSourceMigratorFactory.m */; };
 		7865E8DE2334CA3200111BF3 /* NSDate+NSDateRSSReaderCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E8DD2334CA3200111BF3 /* NSDate+NSDateRSSReaderCategory.m */; };
 		7865E8E12334CA4600111BF3 /* NSString+NSStringDateCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E8E02334CA4600111BF3 /* NSString+NSStringDateCategory.m */; };
 		78FD5E502315036400510D99 /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD5E4F2315036400510D99 /* MainTableViewCell.m */; };
 		78FD5E5323152A1A00510D99 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD5E5223152A1A00510D99 /* DetailsViewController.m */; };
 		78FD5E56231537DF00510D99 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD5E55231537DF00510D99 /* Reachability.m */; };
+		CED92096235370C90069BD90 /* CoreDataMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = CED92095235370C90069BD90 /* CoreDataMigrator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,8 +114,6 @@
 		7808F58A23472DAD00A20F61 /* FeedItemServiceFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedItemServiceFactory.m; sourceTree = "<group>"; };
 		7808F58C23473D2D00A20F61 /* FeedResourceServiceFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedResourceServiceFactory.h; sourceTree = "<group>"; };
 		7808F58D23473D2D00A20F61 /* FeedResourceServiceFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedResourceServiceFactory.m; sourceTree = "<group>"; };
-		7808F591234745D500A20F61 /* DataSourceMigratorFactory1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataSourceMigratorFactory1.h; sourceTree = "<group>"; };
-		7808F592234745D500A20F61 /* DataSourceMigratorFactory1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataSourceMigratorFactory1.m; sourceTree = "<group>"; };
 		7808F59623476C7E00A20F61 /* NSFileManager+NSFileManagerCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+NSFileManagerCategory.h"; sourceTree = "<group>"; };
 		7808F59723476C7E00A20F61 /* NSFileManager+NSFileManagerCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+NSFileManagerCategory.m"; sourceTree = "<group>"; };
 		7808F5A0234775F100A20F61 /* SQLManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLManager.h; sourceTree = "<group>"; };
@@ -174,11 +170,6 @@
 		7808F5F9234F5D4600A20F61 /* CoreDataFeedItemRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataFeedItemRepository.m; sourceTree = "<group>"; };
 		7808F5FC234F5D6300A20F61 /* CoreDataFeedResourceRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataFeedResourceRepository.h; sourceTree = "<group>"; };
 		7808F5FD234F5D6300A20F61 /* CoreDataFeedResourceRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataFeedResourceRepository.m; sourceTree = "<group>"; };
-		7808F6012350C6ED00A20F61 /* DataSourceMigratorProtocol1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataSourceMigratorProtocol1.h; sourceTree = "<group>"; };
-		7808F6022350CC8300A20F61 /* SQLMIgrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLMIgrator.h; sourceTree = "<group>"; };
-		7808F6032350CC8300A20F61 /* SQLMIgrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLMIgrator.m; sourceTree = "<group>"; };
-		7808F6052350CC9100A20F61 /* FileMigrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileMigrator.h; sourceTree = "<group>"; };
-		7808F6062350CC9100A20F61 /* FileMigrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileMigrator.m; sourceTree = "<group>"; };
 		7865E8442328D5F500111BF3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7865E871232BCD4200111BF3 /* SQLFeedResourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLFeedResourceService.h; sourceTree = "<group>"; };
 		7865E872232BCD4200111BF3 /* SQLFeedResourceService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLFeedResourceService.m; sourceTree = "<group>"; };
@@ -199,10 +190,10 @@
 		7865E8C02334C7C700111BF3 /* FeedItemServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedItemServiceProtocol.h; sourceTree = "<group>"; };
 		7865E8C12334C7E900111BF3 /* FeedResourceServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedResourceServiceProtocol.h; sourceTree = "<group>"; };
 		7865E8CA2334C88A00111BF3 /* DataSourceMigratorProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataSourceMigratorProtocol.h; sourceTree = "<group>"; };
-		7865E8D12334C91500111BF3 /* SQLToFileDataSourceMigrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLToFileDataSourceMigrator.h; sourceTree = "<group>"; };
-		7865E8D22334C91500111BF3 /* SQLToFileDataSourceMigrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLToFileDataSourceMigrator.m; sourceTree = "<group>"; };
-		7865E8D42334C9A000111BF3 /* FileToSQLDatasourceMigrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileToSQLDatasourceMigrator.h; sourceTree = "<group>"; };
-		7865E8D52334C9A000111BF3 /* FileToSQLDatasourceMigrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileToSQLDatasourceMigrator.m; sourceTree = "<group>"; };
+		7865E8D12334C91500111BF3 /* FileDataSourceMigrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileDataSourceMigrator.h; sourceTree = "<group>"; };
+		7865E8D22334C91500111BF3 /* FileDataSourceMigrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileDataSourceMigrator.m; sourceTree = "<group>"; };
+		7865E8D42334C9A000111BF3 /* SQLDatasourceMigrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLDatasourceMigrator.h; sourceTree = "<group>"; };
+		7865E8D52334C9A000111BF3 /* SQLDatasourceMigrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLDatasourceMigrator.m; sourceTree = "<group>"; };
 		7865E8D82334C9EC00111BF3 /* DataSourceMigratorFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataSourceMigratorFactory.h; sourceTree = "<group>"; };
 		7865E8D92334C9EC00111BF3 /* DataSourceMigratorFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataSourceMigratorFactory.m; sourceTree = "<group>"; };
 		7865E8DC2334CA3200111BF3 /* NSDate+NSDateRSSReaderCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+NSDateRSSReaderCategory.h"; sourceTree = "<group>"; };
@@ -215,6 +206,8 @@
 		78FD5E5223152A1A00510D99 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		78FD5E54231537DF00510D99 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		78FD5E55231537DF00510D99 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		CED92094235370C90069BD90 /* CoreDataMigrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataMigrator.h; sourceTree = "<group>"; };
+		CED92095235370C90069BD90 /* CoreDataMigrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataMigrator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,7 +242,6 @@
 		780272942313EBFF00EB860B /* RSSReader */ = {
 			isa = PBXGroup;
 			children = (
-				7808F5B32347A10400A20F61 /* ThreadManager */,
 				7808F5AC2347924800A20F61 /* Constants */,
 				7865E8DB2334CA0C00111BF3 /* Categories */,
 				7865E8D72334C9C500111BF3 /* DataMigrateFactory */,
@@ -461,13 +453,6 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		7808F5B32347A10400A20F61 /* ThreadManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ThreadManager;
-			sourceTree = "<group>";
-		};
 		7808F5CB234B3AF400A20F61 /* OtherClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,18 +526,6 @@
 				7802729E2313EC0000EB860B /* RSSReader.xcdatamodeld */,
 			);
 			path = CoreDataManager;
-			sourceTree = "<group>";
-		};
-		7808F6082350CCA400A20F61 /* new */ = {
-			isa = PBXGroup;
-			children = (
-				7808F6012350C6ED00A20F61 /* DataSourceMigratorProtocol1.h */,
-				7808F6022350CC8300A20F61 /* SQLMIgrator.h */,
-				7808F6032350CC8300A20F61 /* SQLMIgrator.m */,
-				7808F6052350CC9100A20F61 /* FileMigrator.h */,
-				7808F6062350CC9100A20F61 /* FileMigrator.m */,
-			);
-			path = new;
 			sourceTree = "<group>";
 		};
 		7865E8432328D5F500111BF3 /* Frameworks */ = {
@@ -629,12 +602,13 @@
 		7865E8C92334C86400111BF3 /* DataMigrateService */ = {
 			isa = PBXGroup;
 			children = (
-				7808F6082350CCA400A20F61 /* new */,
 				7865E8CA2334C88A00111BF3 /* DataSourceMigratorProtocol.h */,
-				7865E8D12334C91500111BF3 /* SQLToFileDataSourceMigrator.h */,
-				7865E8D22334C91500111BF3 /* SQLToFileDataSourceMigrator.m */,
-				7865E8D42334C9A000111BF3 /* FileToSQLDatasourceMigrator.h */,
-				7865E8D52334C9A000111BF3 /* FileToSQLDatasourceMigrator.m */,
+				7865E8D12334C91500111BF3 /* FileDataSourceMigrator.h */,
+				7865E8D22334C91500111BF3 /* FileDataSourceMigrator.m */,
+				7865E8D42334C9A000111BF3 /* SQLDatasourceMigrator.h */,
+				7865E8D52334C9A000111BF3 /* SQLDatasourceMigrator.m */,
+				CED92094235370C90069BD90 /* CoreDataMigrator.h */,
+				CED92095235370C90069BD90 /* CoreDataMigrator.m */,
 			);
 			path = DataMigrateService;
 			sourceTree = "<group>";
@@ -644,8 +618,6 @@
 			children = (
 				7865E8D82334C9EC00111BF3 /* DataSourceMigratorFactory.h */,
 				7865E8D92334C9EC00111BF3 /* DataSourceMigratorFactory.m */,
-				7808F591234745D500A20F61 /* DataSourceMigratorFactory1.h */,
-				7808F592234745D500A20F61 /* DataSourceMigratorFactory1.m */,
 			);
 			path = DataMigrateFactory;
 			sourceTree = "<group>";
@@ -735,7 +707,6 @@
 				7808F5FE234F5D6300A20F61 /* CoreDataFeedResourceRepository.m in Sources */,
 				7865E8DA2334C9EC00111BF3 /* DataSourceMigratorFactory.m in Sources */,
 				7808F5CA234B3ABB00A20F61 /* WebViewControllerConstants.m in Sources */,
-				7808F6042350CC8300A20F61 /* SQLMIgrator.m in Sources */,
 				7808F5A2234775F100A20F61 /* SQLManager.m in Sources */,
 				7865E879232BCD9800111BF3 /* SQLFeedResourceRepository.m in Sources */,
 				7808F5EA234B791000A20F61 /* UIVisualEffectView+UIVisualEffectViewCategory.m in Sources */,
@@ -748,12 +719,11 @@
 				7808F5B62347A1F900A20F61 /* RSSParserConstants.m in Sources */,
 				780272BE23141E7300EB860B /* WebViewController.m in Sources */,
 				7808F58E23473D2D00A20F61 /* FeedResourceServiceFactory.m in Sources */,
-				7808F593234745D500A20F61 /* DataSourceMigratorFactory1.m in Sources */,
 				780726E6231902BD000BF435 /* RSSParser.m in Sources */,
 				78FD5E56231537DF00510D99 /* Reachability.m in Sources */,
 				780726DA2317F8EE000BF435 /* ContainerViewController.m in Sources */,
 				7808F5BC2347A5BE00A20F61 /* FeedItemConstants.m in Sources */,
-				7865E8D62334C9A000111BF3 /* FileToSQLDatasourceMigrator.m in Sources */,
+				7865E8D62334C9A000111BF3 /* SQLDatasourceMigrator.m in Sources */,
 				78FD5E502315036400510D99 /* MainTableViewCell.m in Sources */,
 				7865E876232BCD6F00111BF3 /* SQLFeedItemRepository.m in Sources */,
 				7865E8BB2334C73F00111BF3 /* FileFeedResourceRepository.m in Sources */,
@@ -776,13 +746,12 @@
 				7808F5D7234B3C2D00A20F61 /* UIBarButtonItem+UIBarButtonItemCategory.m in Sources */,
 				780272972313EBFF00EB860B /* AppDelegate.m in Sources */,
 				7865E8BE2334C75000111BF3 /* FileFeedItemRepository.m in Sources */,
-				7808F6072350CC9100A20F61 /* FileMigrator.m in Sources */,
 				7808F5F2234F5C6200A20F61 /* CoreDataFeedItemService.m in Sources */,
 				780726DD2317FAAF000BF435 /* MenuViewController.m in Sources */,
 				7808F5B92347A44C00A20F61 /* RSSURLValidatorConstants.m in Sources */,
 				780726E023180938000BF435 /* MenuTableViewCell.m in Sources */,
 				7808F5F5234F5C7200A20F61 /* CoreDataFeedResourceService.m in Sources */,
-				7865E8D32334C91500111BF3 /* SQLToFileDataSourceMigrator.m in Sources */,
+				7865E8D32334C91500111BF3 /* FileDataSourceMigrator.m in Sources */,
 				7808F5E0234B515200A20F61 /* UITableView+UITableViewCategory.m in Sources */,
 				78072725231EA4A3000BF435 /* RSSURLValidator.m in Sources */,
 				780272B52313F5FA00EB860B /* MainViewController.m in Sources */,
@@ -794,6 +763,7 @@
 				7808F5FA234F5D4600A20F61 /* CoreDataFeedItemRepository.m in Sources */,
 				7808F5CE234B3B0600A20F61 /* Reachability+ReachabilityCategory.m in Sources */,
 				7808F59823476C7E00A20F61 /* NSFileManager+NSFileManagerCategory.m in Sources */,
+				CED92096235370C90069BD90 /* CoreDataMigrator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,13 +907,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RSSReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = DN.RSSReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -953,13 +924,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RSSReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = DN.RSSReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

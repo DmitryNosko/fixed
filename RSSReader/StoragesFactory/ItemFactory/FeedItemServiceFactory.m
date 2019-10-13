@@ -9,12 +9,12 @@
 #import "FeedItemServiceFactory.h"
 #import "FileFeedItemService.h"
 #import "SQLFeedItemService.h"
-//#import "CoreDataFeedItemService.h"
+#import "CoreDataFeedItemService.h"
 
 @interface FeedItemServiceFactory()
 @property (strong, nonatomic) FileFeedItemService* fileFeedItemService;
 @property (strong, nonatomic) SQLFeedItemService* sqlFeedItemService;
-//@property (strong, nonatomic) CoreDataFeedItemService* cdFeedItemService;
+@property (strong, nonatomic) CoreDataFeedItemService* cdFeedItemService;
 @end
 
 @implementation FeedItemServiceFactory
@@ -26,24 +26,24 @@
         _storageValue = value;
         _fileFeedItemService = [[FileFeedItemService alloc] init];
         _sqlFeedItemService = [[SQLFeedItemService alloc] init];
-        //_cdFeedItemService = [[CoreDataFeedItemService alloc] init];
+        _cdFeedItemService = [[CoreDataFeedItemService alloc] init];
     }
     return self;
 }
 
-- (id<FeedItemServiceProtocol>) feedItemServiceProtocol {
-    return self.storageValue.intValue == 0 ? self.fileFeedItemService : self.sqlFeedItemService;
-}
-
 //- (id<FeedItemServiceProtocol>) feedItemServiceProtocol {
-//    if (self.storageValue.intValue == 0) {
-//        return self.fileFeedItemService;
-//    } else if (self.storageValue.intValue == 1) {
-//        return self.sqlFeedItemService;
-//    } else {
-//        return self.cdFeedItemService;
-//    }
+//    return self.storageValue.intValue == 0 ? self.fileFeedItemService : self.sqlFeedItemService;
 //}
+
+- (id<FeedItemServiceProtocol>) feedItemServiceProtocol {
+    if (self.storageValue.intValue == 0) {
+        return self.fileFeedItemService;
+    } else if (self.storageValue.intValue == 1) {
+        return self.sqlFeedItemService;
+    } else {
+        return self.cdFeedItemService;
+    }
+}
 
 - (NSMutableArray<FeedItem *> *) allFeedItemsForResources:(NSMutableArray<FeedResource *> *)resources {
     return [[self feedItemServiceProtocol] allFeedItemsForResources:resources];

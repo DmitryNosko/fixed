@@ -7,8 +7,9 @@
 //
 
 #import "DataSourceMigratorFactory.h"
-#import "FileToSQLDatasourceMigrator.h"
-#import "SQLToFileDataSourceMigrator.h"
+#import "SQLDatasourceMigrator.h"
+#import "FileDataSourceMigrator.h"
+#import "CoreDataMigrator.h"
 
 @interface DataSourceMigratorFactory ()
 @property (strong, nonatomic) NSDictionary<NSNumber*, id<DataSourceMigratorProtocol>>* migratorByID;
@@ -16,12 +17,13 @@
 
 @implementation DataSourceMigratorFactory
 
-- (instancetype)init
+- (instancetype) initWithResourceService:(id<FeedResourceServiceProtocol>) resourceService itemService:(id<FeedItemServiceProtocol>) itemService
 {
     self = [super init];
     if (self) {
-        _migratorByID = @{@(0) : [[SQLToFileDataSourceMigrator alloc] init],
-                          @(1) : [[FileToSQLDatasourceMigrator alloc] init]
+        _migratorByID = @{@(0) : [[FileDataSourceMigrator alloc] initWithResource:resourceService andItemService:itemService],
+                          @(1) : [[SQLDatasourceMigrator alloc] initWithResource:resourceService andItemService:itemService],
+                          @(2) : [[CoreDataMigrator alloc] initWithResource:resourceService andItemService:itemService]
                         };
     }
     return self;

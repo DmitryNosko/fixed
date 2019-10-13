@@ -22,7 +22,7 @@ static NSString* const FAVORITES_NEWS_VC_TITLE = @"FAVORITIES";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        
+
     [self configurateNavigationBar];
 
     ContainerViewController* vc = [[ContainerViewController alloc] init];
