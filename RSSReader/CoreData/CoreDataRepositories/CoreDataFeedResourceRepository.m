@@ -29,9 +29,9 @@
     [newResource setValue:[resource.identifier UUIDString] forKey:@"identifier"];
     [newResource setValue:resource.name forKey:@"name"];
     [newResource setValue:[resource.url absoluteString] forKey:@"url"];//absoulute
-    
+
     NSError* error = nil;
-    
+
     if ([self.peresistentContainer.viewContext save:&error]) {
         NSLog(@"Success");
     } else {

@@ -28,7 +28,9 @@
     return [self.cdFeedItemRepository allFeedItemsForResources:resources];
 }
 
-- (NSMutableArray<FeedItem *> *)cleanSaveFeedItems:(NSMutableArray<FeedItem *> *)items { 
+- (NSMutableArray<FeedItem *> *)cleanSaveFeedItems:(NSMutableArray<FeedItem *> *)items {
+    //FeedItem* item = [items firstObject];
+    
     FeedResource* resource = [items firstObject].resource;
     [self.cdFeedItemRepository removeFeedItemForResource:resource.identifier];
     NSMutableArray<FeedItem *>* createdItems = [self addFeedItems:items];

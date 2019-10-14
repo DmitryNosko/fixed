@@ -34,8 +34,6 @@
 }
 
 - (void)migrateData {
-
-    //[[[SQLManager alloc] init] createDB];
     
     NSMutableArray<FeedResource *>* fileResources = [self.resourceService feedResources];
     
@@ -44,6 +42,7 @@
     }
     
     [self.cdItemService cleanSaveFeedItems:[self.itemService allFeedItemsForResources:fileResources]];
+    
     [NSFileManager deleteAllDBFiles];
     [NSFileManager deleteAllTXTFiles];
 }

@@ -31,10 +31,6 @@
     return self;
 }
 
-//- (id<FeedItemServiceProtocol>) feedItemServiceProtocol {
-//    return self.storageValue.intValue == 0 ? self.fileFeedItemService : self.sqlFeedItemService;
-//}
-
 - (id<FeedItemServiceProtocol>) feedItemServiceProtocol {
     if (self.storageValue.intValue == 0) {
         return self.fileFeedItemService;
