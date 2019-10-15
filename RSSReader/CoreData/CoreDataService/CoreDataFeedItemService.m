@@ -8,9 +8,11 @@
 
 #import "CoreDataFeedItemService.h"
 #import "CoreDataFeedItemRepository.h"
+#import "CoreDataFeedResourceRepository.h"
 
 @interface CoreDataFeedItemService()
 @property (strong, nonatomic) CoreDataFeedItemRepository* cdFeedItemRepository;
+@property (strong, nonatomic) CoreDataFeedResourceRepository* cdFeedResourceRepository;
 @end
 
 @implementation CoreDataFeedItemService
@@ -20,6 +22,7 @@
     self = [super init];
     if (self) {
         _cdFeedItemRepository = [[CoreDataFeedItemRepository alloc] init];
+        _cdFeedResourceRepository = [[CoreDataFeedResourceRepository alloc] init];
     }
     return self;
 }
@@ -30,8 +33,8 @@
 
 - (NSMutableArray<FeedItem *> *)cleanSaveFeedItems:(NSMutableArray<FeedItem *> *)items {
     //FeedItem* item = [items firstObject];
-    
-    FeedResource* resource = [items firstObject].resource;
+    NSURL* resURL = [items firstObject].resourceURL;
+    FeedResource* resource = [self.cdFeedResourceRepository resourceByURL:resURL];
     [self.cdFeedItemRepository removeFeedItemForResource:resource.identifier];
     NSMutableArray<FeedItem *>* createdItems = [self addFeedItems:items];
     return createdItems;

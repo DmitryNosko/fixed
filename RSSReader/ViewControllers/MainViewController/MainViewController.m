@@ -460,7 +460,8 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
 - (void) feedResourceWasChosenHandlerMethod {
     __weak MainViewController* weakSelf = self;
     self.feedResourceWasChosenHandler = ^(FeedResource *resource) {
-        NSMutableArray<FeedItem*>* items = [weakSelf.feedItemServiceFactory feedItemsForResource:resource];
+        //NSMutableArray<FeedItem*>* items = [weakSelf.feedItemServiceFactory feedItemsForResource:resource];
+        NSMutableArray<FeedItem*>* items = [weakSelf.feedItemServiceFactory feedItemsForResources:[[NSMutableArray alloc] initWithObjects:resource, nil]];
         weakSelf.displayedFeeds = items;
         [weakSelf.tableView reloadData];
     };

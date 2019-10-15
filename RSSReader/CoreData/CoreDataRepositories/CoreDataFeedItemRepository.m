@@ -8,6 +8,7 @@
 
 #import "CoreDataFeedItemRepository.h"
 
+
 @implementation CoreDataFeedItemRepository
 
 
@@ -43,7 +44,7 @@
 //    }];
     
     NSManagedObject* newItem = [NSEntityDescription insertNewObjectForEntityForName:@"CDFeedItem" inManagedObjectContext:self.peresistentContainer.viewContext];
-
+    
     [newItem setValue:[item.identifier UUIDString] forKey:@"identifier"];
     [newItem setValue:item.itemTitle forKey:@"itemTitle"];
     [newItem setValue:item.link forKey:@"link"];
@@ -58,6 +59,11 @@
     [newItem setValue:[item.resourceURL absoluteString] forKey:@"resourceURL"];
     
     NSManagedObject* resource = [NSEntityDescription insertNewObjectForEntityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
+    [resource setValue:[item.resource.identifier UUIDString] forKey:@"identifier"];
+    [resource setValue:item.resource.name forKey:@"name"];
+    [resource setValue:[item.resource.url absoluteString] forKey:@"url"];
+    
+//    FeedResource* resource1 = [[FeedResource alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[resource valueForKey:@"identifier"]] name:[resource valueForKey:@"name"] url:[NSURL URLWithString:[resource valueForKey:@"url"]]];
     
     [newItem setValue:resource forKey:@"resource"];
 
@@ -73,45 +79,52 @@
 }
 
 - (NSMutableArray<FeedItem *>*) feedItemsForResource:(NSUUID *) identifier {
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    [request setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"pubDate" ascending:NO]]];
-    [request setResultType:NSManagedObjectResultType];
-    NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedItem" inManagedObjectContext:self.peresistentContainer.viewContext];
-    [request setEntity:description];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"isReadingComplite = 0"]];
-    
-    NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
     
     NSFetchRequest* request2 = [[NSFetchRequest alloc] init];
     [request2 setResultType:NSManagedObjectResultType];
     NSEntityDescription* description2 = [NSEntityDescription entityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
     [request2 setEntity:description2];
     [request2 setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", [identifier UUIDString]]];
-
+    
     NSArray<NSManagedObject *>* requestResult2 = [self.peresistentContainer.viewContext executeFetchRequest:request2 error:nil];
+    NSManagedObject* resuls = [requestResult2 firstObject];
+    
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    [request setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"pubDate" ascending:NO]]];
+    [request setResultType:NSManagedObjectResultType];
+    NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedItem" inManagedObjectContext:self.peresistentContainer.viewContext];
+    [request setEntity:description];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"isReadingComplite = 0 AND resource.identifier == %@", [resuls valueForKey:@"identifier"]]];
+    
+    NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
+    
+    
     
     NSMutableArray<FeedItem *>* feedItem = [[NSMutableArray alloc] init];
     
     for (NSManagedObject* obj in requestResult) {
         
         if ([[obj valueForKey:@"resourceURL"] isEqualToString:[[requestResult2 firstObject] valueForKey:@"url"]]) {
-            FeedItem* item = [[FeedItem alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:@"identifier"]]
-                                                itemTitle:[obj valueForKey:@"itemTitle"]
-                                                     link:[obj valueForKey:@"link"]
-                                                  pubDate:[obj valueForKey:@"pubDate"]
-                                          itemDescription:[obj valueForKey:@"itemDescription"]
-                                                enclosure:[obj valueForKey:@"enclosure"]
-                                                 imageURL:[obj valueForKey:@"imageURL"]
-                                               isFavorite:[[obj valueForKey:@"isFavorite"] boolValue]
-                                      isReadingInProgress:[[obj valueForKey:@"isReadingInProgress"] boolValue]
-                                        isReadingComplite:[[obj valueForKey:@"isReadingComplite"] boolValue]
-                                              isAvailable:[[obj valueForKey:@"isAvailable"] boolValue]
-                                              //resourceURL:[[NSURL alloc] initWithString:[obj valueForKey:@"resourceURL"]]
-                                              resourceURL:[obj valueForKey:@"resourceURL"]
-                                                 resource:[obj valueForKey:@"resource"]];
+            NSManagedObject* res = [requestResult2 firstObject];
             
-            [feedItem addObject:item];
-            [self.peresistentContainer.viewContext save:nil];
+            FeedResource* resource = [[FeedResource alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[res valueForKey:@"identifier"]] name:[res valueForKey:@"name"] url:[NSURL URLWithString:[res valueForKey:@"url"]]];
+            
+            FeedItem* item = [[FeedItem alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:@"identifier"]]
+                                                    itemTitle:[obj valueForKey:@"itemTitle"]
+                                                         link:[obj valueForKey:@"link"]
+                                                      pubDate:[obj valueForKey:@"pubDate"]
+                                              itemDescription:[obj valueForKey:@"itemDescription"]
+                                                    enclosure:[obj valueForKey:@"enclosure"]
+                                                     imageURL:[obj valueForKey:@"imageURL"]
+                                                   isFavorite:[[obj valueForKey:@"isFavorite"] boolValue]
+                                          isReadingInProgress:[[obj valueForKey:@"isReadingInProgress"] boolValue]
+                                            isReadingComplite:[[obj valueForKey:@"isReadingComplite"] boolValue]
+                                                  isAvailable:[[obj valueForKey:@"isAvailable"] boolValue]
+                                  //resourceURL:[[NSURL alloc] initWithString:[obj valueForKey:@"resourceURL"]]
+                                                  resourceURL:[obj valueForKey:@"resourceURL"]
+                                                     resource:resource];
+                [feedItem addObject:item];
+                [self.peresistentContainer.viewContext save:nil];
         }
     }
     
@@ -133,21 +146,26 @@
         NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
         
         for (NSManagedObject* obj in requestResult) {
-            FeedItem* item = [[FeedItem alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:@"identifier"]]
-                                                itemTitle:[obj valueForKey:@"itemTitle"]
-                                                     link:[obj valueForKey:@"link"]
-                                                  pubDate:[obj valueForKey:@"pubDate"]
-                                          itemDescription:[obj valueForKey:@"itemDescription"]
-                                                enclosure:[obj valueForKey:@"enclosure"]
-                                                 imageURL:[obj valueForKey:@"imageURL"]
-                                               isFavorite:[[obj valueForKey:@"isFavorite"] boolValue]
-                                      isReadingInProgress:[[obj valueForKey:@"isReadingInProgress"] boolValue]
-                                        isReadingComplite:[[obj valueForKey:@"isReadingComplite"] boolValue]
-                                              isAvailable:[[obj valueForKey:@"isAvailable"] boolValue]
-//                                              resourceURL:[[NSURL alloc] initWithString:[obj valueForKey:@"resourceURL"]]
-                                              resourceURL:[obj valueForKey:@"resourceURL"]
-                                                 resource:resource];
-            [resultItems addObject:item];
+            
+            //for (FeedItem* i in resultItems) {
+                //if (![i.link isEqualToString:[obj valueForKey:@"link"]]) {
+                    FeedItem* item = [[FeedItem alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:@"identifier"]]
+                                                        itemTitle:[obj valueForKey:@"itemTitle"]
+                                                             link:[obj valueForKey:@"link"]
+                                                          pubDate:[obj valueForKey:@"pubDate"]
+                                                  itemDescription:[obj valueForKey:@"itemDescription"]
+                                                        enclosure:[obj valueForKey:@"enclosure"]
+                                                         imageURL:[obj valueForKey:@"imageURL"]
+                                                       isFavorite:[[obj valueForKey:@"isFavorite"] boolValue]
+                                              isReadingInProgress:[[obj valueForKey:@"isReadingInProgress"] boolValue]
+                                                isReadingComplite:[[obj valueForKey:@"isReadingComplite"] boolValue]
+                                                      isAvailable:[[obj valueForKey:@"isAvailable"] boolValue]
+                                      //                                              resourceURL:[[NSURL alloc] initWithString:[obj valueForKey:@"resourceURL"]]
+                                                      resourceURL:[obj valueForKey:@"resourceURL"]
+                                                         resource:resource];
+                    [resultItems addObject:item];
+                //}
+            //}
         }
     }
     
@@ -250,14 +268,14 @@
 //    }];
     
     for (NSManagedObject* obj in requestResult) {
-        FeedResource* res =(FeedResource*)[obj valueForKey:@"resource"];
+        //FeedResource* res = (FeedResource*)[obj valueForKey:@"resource"];
         
-        if ([[res.identifier UUIDString] isEqualToString:[identifier UUIDString]]) {
+        //if ([[res valueForKey:@"identifier"] isEqualToString:[identifier UUIDString]]) {
             NSManagedObjectID* stID = [obj objectID];
             id obj = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
             [self.peresistentContainer.viewContext deleteObject:obj];
             [self.peresistentContainer.viewContext save:nil];
-        }
+        //}
     }
 }
 
