@@ -10,6 +10,7 @@
 
 static NSString* const DB_FILE_EXTENSION = @"db";
 static NSString* const TXT_FILE_EXTENSION = @"txt";
+static NSString* const SQLITE_FILE_EXTENSION = @"sqlite";
 
 @implementation NSFileManager (NSFileManagerCategory)
 
@@ -19,6 +20,10 @@ static NSString* const TXT_FILE_EXTENSION = @"txt";
 
 + (void) deleteAllTXTFiles {
     [self deleteFileByFormat:TXT_FILE_EXTENSION];
+}
+
++ (void) deleteAllSQLITEFiles {
+    [self deleteFileByFormat:SQLITE_FILE_EXTENSION];
 }
 
 + (void) deleteFileByFormat:(NSString *) format {

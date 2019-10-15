@@ -45,6 +45,7 @@
     }
     
     [self.sqlItemService cleanSaveFeedItems:[self.itemService allFeedItemsForResources:fileResources]];
+    [NSFileManager deleteAllSQLITEFiles];
     [NSFileManager deleteAllTXTFiles];
 }
 

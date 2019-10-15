@@ -26,21 +26,19 @@
 //        }
 //    }];
     
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    [request setResultType:NSManagedObjectResultType];
-    NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
-    [request setEntity:description];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"url == %@", resource.url]];
+//    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+//    [request setResultType:NSManagedObjectResultType];
+//    NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
+//    [request setEntity:description];
+//    [request setPredicate:[NSPredicate predicateWithFormat:@"url == %@", resource.url]];
     
     //NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
     
-    //if (!requestResult) {
         NSManagedObject* newResource = [NSEntityDescription insertNewObjectForEntityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
         
-        if (![[[newResource valueForKey:@"url"] absoluteString] isEqualToString:[resource.url absoluteString]]) {
             [newResource setValue:[resource.identifier UUIDString] forKey:@"identifier"];
             [newResource setValue:resource.name forKey:@"name"];
-            [newResource setValue:[resource.url absoluteString] forKey:@"url"];//absoulute
+            [newResource setValue:[resource.url absoluteString] forKey:@"url"];
             
             NSError* error = nil;
             
@@ -49,8 +47,6 @@
             } else {
                 NSLog(@"Error = %@", [error localizedDescription]);
             }
-        }
-    //}
 
     return resource;
 }
@@ -60,7 +56,7 @@
     [request setResultType:NSManagedObjectResultType];
     NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
     [request setEntity:description];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"url == %@", resource.url]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", [resource.identifier UUIDString]]];
     
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
     
@@ -71,10 +67,12 @@
 //            [context save:nil];
 //    }];
     
-    NSManagedObjectID* stID = [[requestResult firstObject] objectID];
-    id obj = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
-    [self.peresistentContainer.viewContext deleteObject:obj];
-    [self.peresistentContainer.viewContext save:nil];
+    for (NSManagedObject* obj in requestResult) {
+        NSManagedObjectID* stID = [obj objectID];
+        id obj = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
+        [self.peresistentContainer.viewContext deleteObject:obj];
+        [self.peresistentContainer.viewContext save:nil];
+    }
 }
 
 - (NSMutableArray<FeedResource *>*) feedResources {
@@ -84,26 +82,17 @@
     [request setEntity:description];
     
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
+    
     NSMutableArray<FeedResource *>* feedResources = [[NSMutableArray alloc] init];
     
     for (NSManagedObject* obj in requestResult) {
         FeedResource* resource = [[FeedResource alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:@"identifier"]] name:[obj valueForKey:@"name"] url:[NSURL URLWithString:[obj valueForKey:@"url"]]];
-        [feedResources addObject:resource];
+        if (resource) {
+            [feedResources addObject:resource];
+        }
     }
     
-    //NSArray<FeedResource *> *uniqueResources = [feedResources valueForKeyPath:@"@distinctUnionOfObjects.name"];
-
-    NSCountedSet<FeedResource*> *resik = [NSCountedSet setWithArray:[feedResources valueForKey:@"url"]];
-    NSMutableSet<FeedResource*> *uniqueRes = [NSMutableSet set];
-    for (FeedResource* r in resik)
-        if ([resik countForObject:r] == 1)
-            [uniqueRes addObject:r];
-    NSPredicate *findUniqueRes = [NSPredicate predicateWithFormat:@"url IN %@", uniqueRes];
-    NSArray<FeedResource*>* uniqueResources = [feedResources filteredArrayUsingPredicate:findUniqueRes];
-
-    NSMutableArray<FeedResource*>* resultResources = [NSMutableArray arrayWithArray:uniqueResources];
-    
-    return resultResources;
+    return feedResources;
 }
 
 - (FeedResource *) resourceByURL:(NSURL *) url {
@@ -111,13 +100,14 @@
     [request setResultType:NSManagedObjectResultType];
     NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
     [request setEntity:description];
-    //[request setPredicate:[NSPredicate predicateWithFormat:@"url == %@", url]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"url == %@", [url absoluteString]]];
     
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
+    
     FeedResource* resource = nil;
     
     if ([requestResult count] != 0) {
-        NSManagedObject* obj = [requestResult objectAtIndex:0];
+        NSManagedObject* obj = [requestResult firstObject];
         resource = [[FeedResource alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:@"identifier"]] name:[obj valueForKey:@"name"] url:[NSURL URLWithString:[obj valueForKey:@"url"]]];
         return resource;
     }

@@ -13,35 +13,6 @@
 
 
 - (FeedItem *) addFeedItem:(FeedItem *) item {
-//    [self.peresistentContainer performBackgroundTask:^(NSManagedObjectContext * context) {
-//        context.automaticallyMergesChangesFromParent = YES;
-//
-//        NSManagedObject* addedItem = [NSEntityDescription insertNewObjectForEntityForName:@"CDFeedItem" inManagedObjectContext:context];
-//        [addedItem setValue:[item.identifier UUIDString] forKey:@"identifier"];
-//        [addedItem setValue:item.itemTitle forKey:@"itemTitle"];
-//        [addedItem setValue:item.link forKey:@"link"];
-//        [addedItem setValue:item.pubDate forKey:@"pubDate"];
-//        [addedItem setValue:item.itemDescription forKey:@"itemDescription"];
-//        [addedItem setValue:item.enclosure forKey:@"enclosure"];
-//        [addedItem setValue:item.imageURL forKey:@"imageURL"];
-//        [addedItem setValue:[NSNumber numberWithBool:item.isFavorite] forKey:@"isFavorite"];
-//        [addedItem setValue:[NSNumber numberWithBool:item.isReadingInProgress] forKey:@"isReadingInProgress"];
-//        [addedItem setValue:[NSNumber numberWithBool:item.isReadingComplite] forKey:@"isReadingComplite"];
-//        [addedItem setValue:[NSNumber numberWithBool:item.isAvailable] forKey:@"isAvailable"];
-//        [addedItem setValue:[item.resourceURL absoluteString] forKey:@"resourceURL"];
-//
-//        NSManagedObject* resource = [NSEntityDescription insertNewObjectForEntityForName:@"CDFeedResource" inManagedObjectContext:context];
-//
-//        [addedItem setValue:resource forKey:@"resource"];
-//
-//        NSError* error = nil;
-//
-//        if ([context save:&error]) {
-//            NSLog(@"Success");
-//        } else {
-//            NSLog(@"Error = %@", [error localizedDescription]);
-//        }
-//    }];
     
     NSManagedObject* newItem = [NSEntityDescription insertNewObjectForEntityForName:@"CDFeedItem" inManagedObjectContext:self.peresistentContainer.viewContext];
     
@@ -58,17 +29,17 @@
     [newItem setValue:[NSNumber numberWithBool:item.isAvailable] forKey:@"isAvailable"];
     [newItem setValue:[item.resourceURL absoluteString] forKey:@"resourceURL"];
     
-    NSManagedObject* resource = [NSEntityDescription insertNewObjectForEntityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
-    [resource setValue:[item.resource.identifier UUIDString] forKey:@"identifier"];
-    [resource setValue:item.resource.name forKey:@"name"];
-    [resource setValue:[item.resource.url absoluteString] forKey:@"url"];
+    NSFetchRequest* request2 = [[NSFetchRequest alloc] init];
+    [request2 setResultType:NSManagedObjectResultType];
+    NSEntityDescription* description2 = [NSEntityDescription entityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
+    [request2 setEntity:description2];
+    [request2 setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", [item.resource.identifier UUIDString]]];
     
-//    FeedResource* resource1 = [[FeedResource alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[resource valueForKey:@"identifier"]] name:[resource valueForKey:@"name"] url:[NSURL URLWithString:[resource valueForKey:@"url"]]];
+    NSArray<NSManagedObject *>* resource = [self.peresistentContainer.viewContext executeFetchRequest:request2 error:nil];
     
-    [newItem setValue:resource forKey:@"resource"];
+    [newItem setValue:[resource firstObject] forKey:@"resource"];
 
     NSError* error = nil;
-
     if ([self.peresistentContainer.viewContext save:&error]) {
         NSLog(@"Success");
     } else {
@@ -87,6 +58,7 @@
     [request2 setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", [identifier UUIDString]]];
     
     NSArray<NSManagedObject *>* requestResult2 = [self.peresistentContainer.viewContext executeFetchRequest:request2 error:nil];
+    
     NSManagedObject* resuls = [requestResult2 firstObject];
     
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
@@ -98,16 +70,11 @@
     
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
     
-    
-    
     NSMutableArray<FeedItem *>* feedItem = [[NSMutableArray alloc] init];
     
     for (NSManagedObject* obj in requestResult) {
         
-        if ([[obj valueForKey:@"resourceURL"] isEqualToString:[[requestResult2 firstObject] valueForKey:@"url"]]) {
-            NSManagedObject* res = [requestResult2 firstObject];
-            
-            FeedResource* resource = [[FeedResource alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[res valueForKey:@"identifier"]] name:[res valueForKey:@"name"] url:[NSURL URLWithString:[res valueForKey:@"url"]]];
+            FeedResource* resource = [[FeedResource alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[resuls valueForKey:@"identifier"]] name:[resuls valueForKey:@"name"] url:[NSURL URLWithString:[resuls valueForKey:@"url"]]];
             
             FeedItem* item = [[FeedItem alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:@"identifier"]]
                                                     itemTitle:[obj valueForKey:@"itemTitle"]
@@ -120,11 +87,11 @@
                                           isReadingInProgress:[[obj valueForKey:@"isReadingInProgress"] boolValue]
                                             isReadingComplite:[[obj valueForKey:@"isReadingComplite"] boolValue]
                                                   isAvailable:[[obj valueForKey:@"isAvailable"] boolValue]
-                                  //resourceURL:[[NSURL alloc] initWithString:[obj valueForKey:@"resourceURL"]]
                                                   resourceURL:[obj valueForKey:@"resourceURL"]
                                                      resource:resource];
-                [feedItem addObject:item];
-                [self.peresistentContainer.viewContext save:nil];
+        if (item) {
+            [feedItem addObject:item];
+            [self.peresistentContainer.viewContext save:nil];
         }
     }
     
@@ -140,15 +107,13 @@
         [request setResultType:NSManagedObjectResultType];
         NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedItem" inManagedObjectContext:self.peresistentContainer.viewContext];
         [request setEntity:description];
+        //change to identifier
         [request setPredicate:[NSPredicate predicateWithFormat:@"resourceURL == %@ AND isReadingComplite == %@", resource.url, @(NO)]];
         //[request setPredicate:[NSPredicate predicateWithFormat:@"resourceURL == %@", resource.url]];
         
         NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
         
         for (NSManagedObject* obj in requestResult) {
-            
-            //for (FeedItem* i in resultItems) {
-                //if (![i.link isEqualToString:[obj valueForKey:@"link"]]) {
                     FeedItem* item = [[FeedItem alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:@"identifier"]]
                                                         itemTitle:[obj valueForKey:@"itemTitle"]
                                                              link:[obj valueForKey:@"link"]
@@ -160,25 +125,27 @@
                                               isReadingInProgress:[[obj valueForKey:@"isReadingInProgress"] boolValue]
                                                 isReadingComplite:[[obj valueForKey:@"isReadingComplite"] boolValue]
                                                       isAvailable:[[obj valueForKey:@"isAvailable"] boolValue]
-                                      //                                              resourceURL:[[NSURL alloc] initWithString:[obj valueForKey:@"resourceURL"]]
                                                       resourceURL:[obj valueForKey:@"resourceURL"]
                                                          resource:resource];
-                    [resultItems addObject:item];
-                //}
-            //}
+            if (item) {
+                [resultItems addObject:item];
+            }
         }
     }
     
     return resultItems;
 }
 
-- (NSMutableArray<FeedItem *>*) allFeedItemsForResources:(NSMutableArray<FeedResource *>*) resources {
+- (NSMutableArray<FeedItem *>*) allFeedItemsForResources:(NSMutableArray<FeedResource *>*) resources {// TODO
     NSMutableArray<FeedItem *>* resultItems = [[NSMutableArray alloc] init];
     
     for (FeedResource* resource in resources) {
         NSMutableArray<FeedItem *>* resourceItems = [self feedItemsForResource:resource.identifier];
         for (FeedItem* item in resourceItems) {
-            [resultItems addObject:item];
+            if (item) {
+                [resultItems addObject:item];
+            }
+            
         }
     }
     
@@ -190,7 +157,7 @@
     [request setResultType:NSManagedObjectResultType];
     NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedItem" inManagedObjectContext:self.peresistentContainer.viewContext];
     [request setEntity:description];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"link == %@", item.link]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", item.identifier]];
     
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
     
@@ -206,8 +173,6 @@
 //            abort();
 //        }
 //    }];
-    
-    
     NSManagedObject* itemToUpdate = [requestResult firstObject];
     [itemToUpdate setValue:[NSNumber numberWithBool:item.isFavorite] forKey:@"isFavorite"];
     [itemToUpdate setValue:[NSNumber numberWithBool:item.isReadingInProgress] forKey:@"isReadingInProgress"];
@@ -221,10 +186,9 @@
     [request setResultType:NSManagedObjectResultType];
     NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedItem" inManagedObjectContext:self.peresistentContainer.viewContext];
     [request setEntity:description];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"link == %@", item.link]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", item.identifier]];
     
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
-    
 //    [self.peresistentContainer performBackgroundTask:^(NSManagedObjectContext * context) {
 //        NSManagedObjectID* stID = [[requestResult firstObject] objectID];
 //        id obj = [context existingObjectWithID:stID error:nil];
@@ -235,12 +199,13 @@
 //            abort();
 //        }
 //    }];
-    
-    NSManagedObjectID* stID = [[requestResult firstObject] objectID];
-    if (stID) {
-        id obj = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
-        [self.peresistentContainer.viewContext deleteObject:obj];
-        [self.peresistentContainer.viewContext save:nil];
+    for (NSManagedObject* object in requestResult) {
+        NSManagedObjectID* stID = [object objectID];
+        if (stID) {
+            id obj = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
+            [self.peresistentContainer.viewContext deleteObject:obj];
+            [self.peresistentContainer.viewContext save:nil];
+        }
     }
     
 }
@@ -250,7 +215,7 @@
     [request setResultType:NSManagedObjectResultType];
     NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedItem" inManagedObjectContext:self.peresistentContainer.viewContext];
     [request setEntity:description];
-    //[request setPredicate:[NSPredicate predicateWithFormat:@"resource.identifier == %@", [identifier UUIDString]]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"resource.identifier == %@", [identifier UUIDString]]];
     
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
     
@@ -267,16 +232,19 @@
 //        }
 //    }];
     
-    for (NSManagedObject* obj in requestResult) {
+    //for (NSManagedObject* obj in requestResult) {
         //FeedResource* res = (FeedResource*)[obj valueForKey:@"resource"];
         
         //if ([[res valueForKey:@"identifier"] isEqualToString:[identifier UUIDString]]) {
-            NSManagedObjectID* stID = [obj objectID];
-            id obj = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
-            [self.peresistentContainer.viewContext deleteObject:obj];
+    for (NSManagedObject* obj in requestResult) {
+        NSManagedObjectID* stID = [obj objectID];
+        if (stID) {
+            id object = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
+            [self.peresistentContainer.viewContext deleteObject:object];
             [self.peresistentContainer.viewContext save:nil];
-        //}
+        }
     }
+    
 }
 
 - (void) removeAllFeedItems {
@@ -286,7 +254,6 @@
     [request setEntity:description];
     
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
-    
 //    [self.peresistentContainer performBackgroundTask:^(NSManagedObjectContext * context) {
 //        for (NSManagedObject* obj in requestResult) {
 //            NSManagedObjectID* stID = [obj objectID];
@@ -299,12 +266,13 @@
 //            }
 //        }
 //    }];
-    
-    for (NSManagedObject* obj in requestResult) {
-        NSManagedObjectID* stID = [obj objectID];
-        id obj = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
-        [self.peresistentContainer.viewContext deleteObject:obj];
-        [self.peresistentContainer.viewContext save:nil];
+    for (NSManagedObject* object in requestResult) {
+        NSManagedObjectID* stID = [object objectID];
+        if (stID) {
+            id obj = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
+            [self.peresistentContainer.viewContext deleteObject:obj];
+            [self.peresistentContainer.viewContext save:nil];
+        }
     }
 }
 
@@ -330,13 +298,12 @@
                                   isReadingInProgress:[[obj valueForKey:@"isReadingInProgress"] boolValue]
                                     isReadingComplite:[[obj valueForKey:@"isReadingComplite"] boolValue]
                                           isAvailable:[[obj valueForKey:@"isAvailable"] boolValue]
-//                                          resourceURL:[[NSURL alloc] initWithString:[obj valueForKey:@"resourceURL"]]
                                           resourceURL:[obj valueForKey:@"resourceURL"]
                                              resource:[obj valueForKey:@"resource"]];
-        
-        [favoriteItems addObject:item];
+        if (item) {
+            [favoriteItems addObject:item];
+        }
     }
-    
     return favoriteItems;
 }
 
@@ -351,7 +318,9 @@
     NSMutableArray<NSString *>* favoriteItemLinks = [[NSMutableArray alloc] init];
     
     for (NSManagedObject* obj in requestResult) {
-        [favoriteItemLinks addObject:[obj valueForKey:@"link"]];
+        if ([obj valueForKey:@"link"]) {
+            [favoriteItemLinks addObject:[obj valueForKey:@"link"]];
+        }
     }
     
     return favoriteItemLinks;
@@ -368,7 +337,9 @@
     NSMutableArray<NSString *>* readingInProgressFeedItemLinks = [[NSMutableArray alloc] init];
     
     for (NSManagedObject* obj in requestResult) {
-        [readingInProgressFeedItemLinks addObject:[obj valueForKey:@"link"]];
+        if ([obj valueForKey:@"link"]) {
+            [readingInProgressFeedItemLinks addObject:[obj valueForKey:@"link"]];
+        }
     }
     
     return readingInProgressFeedItemLinks;
@@ -385,7 +356,9 @@
     NSMutableArray<NSString *>* readingInProgressFeedItemLinks = [[NSMutableArray alloc] init];
     
     for (NSManagedObject* obj in requestResult) {
-        [readingInProgressFeedItemLinks addObject:[obj valueForKey:@"link"]];
+        if ([obj valueForKey:@"link"]) {
+            [readingInProgressFeedItemLinks addObject:[obj valueForKey:@"link"]];
+        }
     }
     
     return readingInProgressFeedItemLinks;

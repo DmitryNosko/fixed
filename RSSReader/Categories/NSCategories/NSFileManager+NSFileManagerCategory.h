@@ -11,6 +11,7 @@
 @interface NSFileManager (NSFileManagerCategory)
 + (void) deleteAllDBFiles;
 + (void) deleteAllTXTFiles;
++ (void) deleteAllSQLITEFiles;
 + (NSURL *) applicationDocumentDirectory;
 + (NSString *) documentDirectoryPath;
 + (NSString *) pathForFile:(NSString *) file;

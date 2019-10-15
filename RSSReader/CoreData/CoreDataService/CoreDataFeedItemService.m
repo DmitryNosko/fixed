@@ -43,7 +43,9 @@
 - (NSMutableArray<FeedItem *> *) addFeedItems:(NSMutableArray<FeedItem *>*) items {
     NSMutableArray<FeedItem *>* resultItems = [[NSMutableArray alloc] init];
     for (FeedItem* item in items) {
-        [resultItems addObject:[self.cdFeedItemRepository addFeedItem:item]];
+        if ([self.cdFeedItemRepository addFeedItem:item]) {
+            [resultItems addObject:[self.cdFeedItemRepository addFeedItem:item]];
+        }
     }
     return resultItems;
 }
