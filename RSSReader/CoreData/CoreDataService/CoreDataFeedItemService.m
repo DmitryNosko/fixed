@@ -33,8 +33,9 @@
 
 - (NSMutableArray<FeedItem *> *)cleanSaveFeedItems:(NSMutableArray<FeedItem *> *)items {
     //FeedItem* item = [items firstObject];
-    NSURL* resURL = [items firstObject].resourceURL;
-    FeedResource* resource = [self.cdFeedResourceRepository resourceByURL:resURL];
+    FeedResource* resource = [items firstObject].resource;
+//    NSURL* resURL = [items firstObject].resourceURL;
+//    FeedResource* resource = [self.cdFeedResourceRepository resourceByURL:resURL];
     [self.cdFeedItemRepository removeFeedItemForResource:resource.identifier];
     NSMutableArray<FeedItem *>* createdItems = [self addFeedItems:items];
     return createdItems;
@@ -43,9 +44,9 @@
 - (NSMutableArray<FeedItem *> *) addFeedItems:(NSMutableArray<FeedItem *>*) items {
     NSMutableArray<FeedItem *>* resultItems = [[NSMutableArray alloc] init];
     for (FeedItem* item in items) {
-        if ([self.cdFeedItemRepository addFeedItem:item]) {
+        //if ([self.cdFeedItemRepository addFeedItem:item]) {
             [resultItems addObject:[self.cdFeedItemRepository addFeedItem:item]];
-        }
+        //}
     }
     return resultItems;
 }

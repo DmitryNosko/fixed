@@ -17,7 +17,7 @@
 @implementation RSSURLValidator
 
 - (NSURL*) parseFeedResoursecFromURL:(NSURL*) url {
-    NSString *fullURL = url.absoluteString;
+    NSString *fullURL = [url absoluteString];
     NSString* stringURL = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
     NSError* error = nil;
     

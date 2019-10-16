@@ -67,12 +67,13 @@
 //            [context save:nil];
 //    }];
     
-    for (NSManagedObject* obj in requestResult) {
+    for (NSManagedObject* obj in [requestResult copy]) {
         NSManagedObjectID* stID = [obj objectID];
         id obj = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
         [self.peresistentContainer.viewContext deleteObject:obj];
-        [self.peresistentContainer.viewContext save:nil];
+        
     }
+    [self.peresistentContainer.viewContext save:nil];
 }
 
 - (NSMutableArray<FeedResource *>*) feedResources {
@@ -85,7 +86,7 @@
     
     NSMutableArray<FeedResource *>* feedResources = [[NSMutableArray alloc] init];
     
-    for (NSManagedObject* obj in requestResult) {
+    for (NSManagedObject* obj in [requestResult copy]) {
         FeedResource* resource = [[FeedResource alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:@"identifier"]] name:[obj valueForKey:@"name"] url:[NSURL URLWithString:[obj valueForKey:@"url"]]];
         if (resource) {
             [feedResources addObject:resource];
@@ -100,7 +101,7 @@
     [request setResultType:NSManagedObjectResultType];
     NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
     [request setEntity:description];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"url == %@", [url absoluteString]]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"url == %@", url]];
     
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
     

@@ -13,6 +13,8 @@
 #import "FileFeedResourceService.h"
 #import "NSFileManager+NSFileManagerCategory.h"
 #import "SQLManager.h"
+#import "CoreDataFeedItemService.h"
+#import "CoreDataFeedResourceService.h"
 
 @interface SQLDatasourceMigrator()
 @property (strong, nonatomic) id<FeedItemServiceProtocol> itemService;
@@ -39,14 +41,16 @@
     [[[SQLManager alloc] init] createDB];
     
     NSMutableArray<FeedResource *>* fileResources = [self.resourceService feedResources];
-    
+        
     for (FeedResource* fileResource in fileResources) {
         [self.sqlResourceService addFeedResource:fileResource];
     }
     
     [self.sqlItemService cleanSaveFeedItems:[self.itemService allFeedItemsForResources:fileResources]];
-    [NSFileManager deleteAllSQLITEFiles];
+    
+    
     [NSFileManager deleteAllTXTFiles];
+    //[NSFileManager deleteAllSQLITEFiles];
 }
 
 @end

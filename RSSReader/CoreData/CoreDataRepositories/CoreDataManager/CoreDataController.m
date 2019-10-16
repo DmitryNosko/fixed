@@ -27,21 +27,19 @@
         if (_peresistentContainer == nil) {
             _peresistentContainer = [[NSPersistentContainer alloc] initWithName:@"RSSReader"];
             NSURL* url = [[NSFileManager applicationDocumentDirectory] URLByAppendingPathComponent:@"RSSReader.sqlite"];
-            NSLog(@"url = %@", url);
+            //NSLog(@"url = %@", url);
             _peresistentContainer.persistentStoreDescriptions = @[[NSPersistentStoreDescription persistentStoreDescriptionWithURL:url]];
-            _peresistentContainer.persistentStoreDescriptions.firstObject.shouldInferMappingModelAutomatically = NO;
-            _peresistentContainer.persistentStoreDescriptions.firstObject.shouldMigrateStoreAutomatically = YES;
+            
             [_peresistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription * storeDescription, NSError * error) {
                 if (error != nil) {
-                    NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-                    abort();
+                    NSLog(@"Unresolved error peresistentContainer %@, %@", error, error.userInfo);
+                    //abort();
                 }
                 weakSelf.peresistentContainer.viewContext.automaticallyMergesChangesFromParent = YES;
             }];
         }
     }
-    
-    
+
     return _peresistentContainer;
 }
 

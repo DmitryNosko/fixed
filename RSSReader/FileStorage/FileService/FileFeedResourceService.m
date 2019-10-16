@@ -46,7 +46,7 @@ static FileFeedResourceService* shared;
     NSMutableArray<FeedResource *>* resources = [self.fileFeedResourceRepository feedResources:MENU_FILE_NAME];
     FeedResource* res = nil;
     for (FeedResource* resource in resources) {
-        if ([resource.url.absoluteString isEqualToString:url.absoluteString]) {
+        if ([[resource.url absoluteString] isEqualToString:[url absoluteString]]) {
             res = resource;
         }
     }
