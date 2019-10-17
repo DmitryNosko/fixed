@@ -11,6 +11,6 @@
 
 @interface CoreDataController : NSObject
 @property (strong, nonatomic, readonly) NSPersistentContainer* peresistentContainer;
-- (void) saveContext;
+- (void) saveContext:(NSManagedObjectContext *) context;
 @end
 

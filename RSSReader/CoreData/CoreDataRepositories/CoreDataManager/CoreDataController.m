@@ -43,12 +43,12 @@
     return _peresistentContainer;
 }
 
-- (void) saveContext {
-    NSManagedObjectContext* context = self.peresistentContainer.viewContext;
+- (void) saveContext:(NSManagedObjectContext *) context {
     NSError* error = nil;
-    if ([context hasChanges] && [context save:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-        abort();
+    if ([context save:&error]) {
+        NSLog(@"Success");
+    } else {
+        NSLog(@"Error = %@", [error localizedDescription]);
     }
 }
 

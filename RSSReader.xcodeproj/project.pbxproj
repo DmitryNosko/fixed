@@ -55,6 +55,7 @@
 		7808F5F5234F5C7200A20F61 /* CoreDataFeedResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5F4234F5C7200A20F61 /* CoreDataFeedResourceService.m */; };
 		7808F5FA234F5D4600A20F61 /* CoreDataFeedItemRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5F9234F5D4600A20F61 /* CoreDataFeedItemRepository.m */; };
 		7808F5FE234F5D6300A20F61 /* CoreDataFeedResourceRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F5FD234F5D6300A20F61 /* CoreDataFeedResourceRepository.m */; };
+		7808F68823589ADA00A20F61 /* NSFetchRequest+NSFetchRequestCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7808F68723589ADA00A20F61 /* NSFetchRequest+NSFetchRequestCategory.m */; };
 		7865E8452328D5F500111BF3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7865E8442328D5F500111BF3 /* libsqlite3.tbd */; };
 		7865E873232BCD4200111BF3 /* SQLFeedResourceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E872232BCD4200111BF3 /* SQLFeedResourceService.m */; };
 		7865E876232BCD6F00111BF3 /* SQLFeedItemRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865E875232BCD6F00111BF3 /* SQLFeedItemRepository.m */; };
@@ -170,6 +171,8 @@
 		7808F5F9234F5D4600A20F61 /* CoreDataFeedItemRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataFeedItemRepository.m; sourceTree = "<group>"; };
 		7808F5FC234F5D6300A20F61 /* CoreDataFeedResourceRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataFeedResourceRepository.h; sourceTree = "<group>"; };
 		7808F5FD234F5D6300A20F61 /* CoreDataFeedResourceRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataFeedResourceRepository.m; sourceTree = "<group>"; };
+		7808F68623589ADA00A20F61 /* NSFetchRequest+NSFetchRequestCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFetchRequest+NSFetchRequestCategory.h"; sourceTree = "<group>"; };
+		7808F68723589ADA00A20F61 /* NSFetchRequest+NSFetchRequestCategory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFetchRequest+NSFetchRequestCategory.m"; sourceTree = "<group>"; };
 		7865E8442328D5F500111BF3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		7865E871232BCD4200111BF3 /* SQLFeedResourceService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLFeedResourceService.h; sourceTree = "<group>"; };
 		7865E872232BCD4200111BF3 /* SQLFeedResourceService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLFeedResourceService.m; sourceTree = "<group>"; };
@@ -399,6 +402,8 @@
 				7808F59723476C7E00A20F61 /* NSFileManager+NSFileManagerCategory.m */,
 				7808F5A323477E0100A20F61 /* NSUUID+NSUUIDCategory.h */,
 				7808F5A423477E0100A20F61 /* NSUUID+NSUUIDCategory.m */,
+				7808F68623589ADA00A20F61 /* NSFetchRequest+NSFetchRequestCategory.h */,
+				7808F68723589ADA00A20F61 /* NSFetchRequest+NSFetchRequestCategory.m */,
 			);
 			path = NSCategories;
 			sourceTree = "<group>";
@@ -753,6 +758,7 @@
 				7808F5F5234F5C7200A20F61 /* CoreDataFeedResourceService.m in Sources */,
 				7865E8D32334C91500111BF3 /* FileDataSourceMigrator.m in Sources */,
 				7808F5E0234B515200A20F61 /* UITableView+UITableViewCategory.m in Sources */,
+				7808F68823589ADA00A20F61 /* NSFetchRequest+NSFetchRequestCategory.m in Sources */,
 				78072725231EA4A3000BF435 /* RSSURLValidator.m in Sources */,
 				780272B52313F5FA00EB860B /* MainViewController.m in Sources */,
 				7808F58B23472DAD00A20F61 /* FeedItemServiceFactory.m in Sources */,

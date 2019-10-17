@@ -7,6 +7,7 @@
 //
 
 #import "CoreDataFeedResourceRepository.h"
+#import "NSFetchRequest+NSFetchRequestCategory.h"
 
 @implementation CoreDataFeedResourceRepository
 
@@ -52,13 +53,8 @@
 }
 
 - (void) removeFeedResource:(FeedResource *) resource {
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    [request setResultType:NSManagedObjectResultType];
-    NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
-    [request setEntity:description];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", [resource.identifier UUIDString]]];
-    
-    NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
+    NSFetchRequest* resourcesRequest = [NSFetchRequest fetchRequestwithEntity:@"CDFeedResource" context:self.peresistentContainer.viewContext andPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", [resource.identifier UUIDString]]];
+    NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:resourcesRequest error:nil];
     
 //    [self.peresistentContainer performBackgroundTask:^(NSManagedObjectContext * context) {
 //            NSManagedObjectID* stID = [[requestResult firstObject] objectID];
@@ -71,24 +67,19 @@
         NSManagedObjectID* stID = [obj objectID];
         id obj = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
         [self.peresistentContainer.viewContext deleteObject:obj];
-        
     }
-    [self.peresistentContainer.viewContext save:nil];
+    
+    [self saveContext:self.peresistentContainer.viewContext];
 }
 
 - (NSMutableArray<FeedResource *>*) feedResources {
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    [request setResultType:NSManagedObjectResultType];
-    NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
-    [request setEntity:description];
-    
+    NSFetchRequest* request = [NSFetchRequest fetchRequestwithEntity:@"CDFeedResource" context:self.peresistentContainer.viewContext andPredicate:nil];
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
     
     NSMutableArray<FeedResource *>* feedResources = [[NSMutableArray alloc] init];
-    
     for (NSManagedObject* obj in [requestResult copy]) {
         FeedResource* resource = [[FeedResource alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:@"identifier"]] name:[obj valueForKey:@"name"] url:[NSURL URLWithString:[obj valueForKey:@"url"]]];
-        if (resource) {
+        if (resource != nil) {
             [feedResources addObject:resource];
         }
     }
@@ -97,16 +88,10 @@
 }
 
 - (FeedResource *) resourceByURL:(NSURL *) url {
-    NSFetchRequest* request = [[NSFetchRequest alloc] init];
-    [request setResultType:NSManagedObjectResultType];
-    NSEntityDescription* description = [NSEntityDescription entityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
-    [request setEntity:description];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"url == %@", url]];
-    
+    NSFetchRequest* request = [NSFetchRequest fetchRequestwithEntity:@"CDFeedResource" context:self.peresistentContainer.viewContext andPredicate:[NSPredicate predicateWithFormat:@"url == %@", url]];
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
     
     FeedResource* resource = nil;
-    
     if ([requestResult count] != 0) {
         NSManagedObject* obj = [requestResult firstObject];
         resource = [[FeedResource alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:@"identifier"]] name:[obj valueForKey:@"name"] url:[NSURL URLWithString:[obj valueForKey:@"url"]]];
