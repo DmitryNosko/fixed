@@ -12,5 +12,7 @@
 @interface CoreDataController : NSObject
 @property (strong, nonatomic, readonly) NSPersistentContainer* peresistentContainer;
 - (void) saveContext:(NSManagedObjectContext *) context;
+- (NSArray<NSManagedObject *>*) executeFetchRequest:(NSFetchRequest *) request withContext:(NSManagedObjectContext *) context;
+- (void) deleteAllObjectsFromResultRquest:(NSArray<NSManagedObject *>*) result andContext:(NSManagedObjectContext *) context;
 @end
 

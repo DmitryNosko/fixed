@@ -18,4 +18,5 @@ NSString* const LINK_TAG = @"link";
 NSString* const PUBDATE_TAG = @"pubDate";
 NSString* const DESCRIPTION_TAG = @"description";
 NSString* const EMPTY_STRING = @"";
-NSString* const PATTERN_FOR_VALIDATION = @"<\/?[A-Za-z]+[^>]*>";
+//NSString* const PATTERN_FOR_VALIDATION = @"<\/?[A-Za-z]+[^>]*>";
+NSString* const END_OF_STRING = @"\n";

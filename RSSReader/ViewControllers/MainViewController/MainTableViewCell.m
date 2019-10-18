@@ -50,6 +50,8 @@
     [self.favoritesButton setImage:[UIImage imageNamed:CLEAR_STAR_BUTTON_IMAGE] forState:UIControlStateNormal];
 }
 
+#pragma mark - HeaderSetUp's
+
 - (void) setUp {
     
     self.favoritesButton = [UIButton buttonWithType:UIButtonTypeCustom];

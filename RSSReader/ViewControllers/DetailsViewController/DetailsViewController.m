@@ -44,8 +44,9 @@
     self.itemImage.image = [UIImage imageWithData:self.imageData];
 }
 
+#pragma mark - ViewControllerSetUp's
+
 - (void) setUp {
-    
     self.scrollView = [[UIScrollView alloc] init];
     self.scrollView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.scrollView];

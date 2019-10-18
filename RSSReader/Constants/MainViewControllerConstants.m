@@ -30,3 +30,5 @@ NSString* const ONE_WEEK_TIME_RANGE = @"1 week";
 NSString* const ONE_MONTH_TIME_RANGE = @"1 month";
 NSString* const CLEAR_STAR_BUTTON_IMAGE = @"clearStar";
 NSString* const NEW_STATEMENT_FOR_NEWS = @"new";
+NSString* const MVC_BACK_BUTTON_NAME = @"Resourcec";
+int const SECONDS_IN_DAY = 86400;

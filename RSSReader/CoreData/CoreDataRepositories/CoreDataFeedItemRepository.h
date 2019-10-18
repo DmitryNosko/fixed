@@ -26,5 +26,4 @@
 - (void) removeFeedItemForResource:(NSUUID *) identifier;
 - (void) removeAllFeedItems;
 
-
 @end

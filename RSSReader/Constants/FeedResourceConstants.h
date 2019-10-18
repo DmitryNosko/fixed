@@ -9,8 +9,10 @@
 #ifndef FeedResourceConstants_h
 #define FeedResourceConstants_h
 
-extern NSString* const ID_KEY;
-extern NSString* const NAME_KEY;
-extern NSString* const URL_KEY;
+extern NSString* const RESOURCE_ID_KEY;
+extern NSString* const RESOURCE_NAME_KEY;
+extern NSString* const RESOURCE_URL_KEY;
+extern NSString* const RESOURCE_URL_NAME_KEY;
+extern NSString* const RESOURCE_CORE_DATA_NAME;
 
 #endif /* FeedResourceConstants_h */

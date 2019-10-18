@@ -35,17 +35,17 @@
 #pragma mark - NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.identifier forKey:ID_KEY];
-    [aCoder encodeObject:self.name forKey:NAME_KEY];
-    [aCoder encodeObject:self.url forKey:URL_KEY];
+    [aCoder encodeObject:self.identifier forKey:RESOURCE_ID_KEY];
+    [aCoder encodeObject:self.name forKey:RESOURCE_NAME_KEY];
+    [aCoder encodeObject:self.url forKey:RESOURCE_URL_KEY];
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        self.identifier = [aDecoder decodeObjectForKey:ID_KEY];
-        self.name = [aDecoder decodeObjectForKey:NAME_KEY];
-        self.url = [aDecoder decodeObjectForKey:URL_KEY];
+        self.identifier = [aDecoder decodeObjectForKey:RESOURCE_ID_KEY];
+        self.name = [aDecoder decodeObjectForKey:RESOURCE_NAME_KEY];
+        self.url = [aDecoder decodeObjectForKey:RESOURCE_URL_KEY];
     }
     return self;
 }

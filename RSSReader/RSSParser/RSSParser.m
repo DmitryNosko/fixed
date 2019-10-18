@@ -55,10 +55,9 @@
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    
     if ([elementName isEqualToString:ITEM_TAG]) {
         if (self.feedItem != nil) {
-            self.feedItem.itemDescription = [self correctDescription:self.feedItem.itemDescription];
+            self.feedItem.itemDescription = [self.feedItem correctDescription:self.feedItem.itemDescription];
             self.feedItem.resourceURL = self.resourceURL;
             self.feedItemDownloadedHandler(self.feedItem);
         }
@@ -66,20 +65,9 @@
     }
 }
 
-- (NSMutableString*) correctDescription:(NSString *) string {
-    NSRegularExpression* regularExpression = [NSRegularExpression regularExpressionWithPattern:PATTERN_FOR_VALIDATION
-                                                                                       options:NSRegularExpressionCaseInsensitive
-                                                                                         error:nil];
-    string = [regularExpression stringByReplacingMatchesInString:string
-                                                         options:0
-                                                           range:NSMakeRange(0, [string length])
-                                                    withTemplate:EMPTY_STRING];
-    return [string mutableCopy];
-}
-
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
     NSString *trimmed = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if (![trimmed isEqualToString:@"\n"]) {
+    if (![trimmed isEqualToString:END_OF_STRING]) {
         if ([self.element isEqualToString:TITLE_TAG]) {
             self.feedItem.itemTitle = string;
         } else if ([self.element isEqualToString:LINK_TAG]) {
@@ -93,7 +81,9 @@
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    self.parserDidEndDocumentHandler();
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.parserDidEndDocumentHandler();
+    });
 }
 
 @end

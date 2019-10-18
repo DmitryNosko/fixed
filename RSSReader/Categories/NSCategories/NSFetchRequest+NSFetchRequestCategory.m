@@ -12,6 +12,9 @@
 
 + (NSFetchRequest * _Nonnull) fetchRequestwithEntity:(NSString * _Nonnull) entity context:(NSManagedObjectContext * _Nonnull) context andPredicate:(NSPredicate * _Nullable) predicate {
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    if ([entity isEqualToString:@"CDFeedItem"]) {
+        [request setSortDescriptors:@[[[NSSortDescriptor alloc] initWithKey:@"pubDate" ascending:NO]]];
+    }
     [request setResultType:NSManagedObjectResultType];
     NSEntityDescription* description = [NSEntityDescription entityForName:entity inManagedObjectContext:context];
     [request setEntity:description];

@@ -16,7 +16,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setUp];
-        
         [self.infoButton addTarget:self action:@selector(pushToInfoButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.infoButton];
         
@@ -33,6 +32,8 @@
         [self.listener didTapOnInfoButton:self];
     }
 }
+
+#pragma mark - CellSetUp's
 
 - (void) setUp {
     

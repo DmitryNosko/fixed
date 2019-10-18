@@ -16,18 +16,17 @@
 {
     self = [super init];
     if (self) {
-        [self peresistentContainer];
+        //[self peresistentContainer];
     }
     return self;
 }
 
 - (NSPersistentContainer *) peresistentContainer {
-    __weak CoreDataController* weakSelf = self;
+
     @synchronized (self) {
         if (_peresistentContainer == nil) {
             _peresistentContainer = [[NSPersistentContainer alloc] initWithName:@"RSSReader"];
             NSURL* url = [[NSFileManager applicationDocumentDirectory] URLByAppendingPathComponent:@"RSSReader.sqlite"];
-            //NSLog(@"url = %@", url);
             _peresistentContainer.persistentStoreDescriptions = @[[NSPersistentStoreDescription persistentStoreDescriptionWithURL:url]];
             
             [_peresistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription * storeDescription, NSError * error) {
@@ -35,7 +34,6 @@
                     NSLog(@"Unresolved error peresistentContainer %@, %@", error, error.userInfo);
                     //abort();
                 }
-                weakSelf.peresistentContainer.viewContext.automaticallyMergesChangesFromParent = YES;
             }];
         }
     }
@@ -46,10 +44,27 @@
 - (void) saveContext:(NSManagedObjectContext *) context {
     NSError* error = nil;
     if ([context save:&error]) {
-        NSLog(@"Success");
+        NSLog(@"Success with context = %@", context);
     } else {
         NSLog(@"Error = %@", [error localizedDescription]);
     }
+}
+
+- (NSArray<NSManagedObject *> *)executeFetchRequest:(NSFetchRequest *) request withContext:(NSManagedObjectContext *) context {
+    return [context executeFetchRequest:request error:nil];
+}
+
+- (void) deleteAllObjectsFromResultRquest:(NSArray<NSManagedObject *> *)result andContext:(NSManagedObjectContext *)context {
+    for (NSManagedObject* object in [result copy]) {
+        NSManagedObjectID* stID = [object objectID];
+        if (stID) {
+            id obj = [context existingObjectWithID:stID error:nil];
+            if (obj) {
+                [context deleteObject:obj];
+            }
+        }
+    }
+    [self saveContext:context];
 }
 
 @end

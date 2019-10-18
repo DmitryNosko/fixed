@@ -30,5 +30,7 @@ extern NSString* const ONE_MONTH_TIME_RANGE;
 extern NSString* const CLEAR_STAR_BUTTON_IMAGE;
 extern NSString* const NEW_STATEMENT_FOR_NEWS;
 extern NSString* const CORE_DATA_STORAGE_NAME;
+extern NSString* const MVC_BACK_BUTTON_NAME;
+extern int const SECONDS_IN_DAY;
 #endif /* MainViewControllerConstants_h */
 

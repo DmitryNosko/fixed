@@ -27,7 +27,10 @@
     }
 }
 
+#pragma mark - HeaderSetUp's
+
 - (void) setUp {
+    
     self.addResourceButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.addResourceButton setTitle:ADD_NEW_RESOURCE_TITLE forState:UIControlStateNormal];
     self.addResourceButton.backgroundColor = [UIColor darkGrayColor];

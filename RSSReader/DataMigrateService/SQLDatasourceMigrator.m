@@ -13,8 +13,6 @@
 #import "FileFeedResourceService.h"
 #import "NSFileManager+NSFileManagerCategory.h"
 #import "SQLManager.h"
-#import "CoreDataFeedItemService.h"
-#import "CoreDataFeedResourceService.h"
 
 @interface SQLDatasourceMigrator()
 @property (strong, nonatomic) id<FeedItemServiceProtocol> itemService;
@@ -48,9 +46,8 @@
     
     [self.sqlItemService cleanSaveFeedItems:[self.itemService allFeedItemsForResources:fileResources]];
     
-    
     [NSFileManager deleteAllTXTFiles];
-    //[NSFileManager deleteAllSQLITEFiles];
+    [NSFileManager deleteAllSQLITEFiles];
 }
 
 @end

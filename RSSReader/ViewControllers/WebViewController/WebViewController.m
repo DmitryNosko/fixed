@@ -92,7 +92,6 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }];
-    
 }
 
 - (void) refreshAction {

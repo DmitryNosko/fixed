@@ -20,6 +20,8 @@
 #import "InternetConnectionConstants.h"
 #import "UITableView+UITableViewCategory.h"
 
+static NSString* const FVC_TITLE_NAME = @"Favorites news";
+
 @interface FavoritesNewsViewController () <UITableViewDelegate, UITableViewDataSource, FavoritesNewsTableViewCellListener>
 @property (strong, nonatomic) UITableView* tableView;
 @property (strong, nonatomic) NSMutableArray<FeedItem *>* feeds;
@@ -50,6 +52,7 @@ static NSNumber* DEFAULT_STORAGE_INDEX = 0;
     [super viewDidLoad];
     [self tableViewSetUp];
     [self configureNavigationBar];
+    [self configurateNavigationItem];
     self.feedItemServiceFactory = [[[FeedItemServiceFactory alloc] initWithStorageValue:self.dataSourceStrategyID] feedItemServiceProtocol];
     self.feedResourceServiceFactory = [[[FeedResourceServiceFactory alloc] initWithStorageValue:self.dataSourceStrategyID] feedResourceServiceProtocol];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -148,11 +151,13 @@ static NSNumber* DEFAULT_STORAGE_INDEX = 0;
 #pragma mark - ViewControllerSetUp
 
 - (void) configureNavigationBar {
-    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.tintColor = [UIColor darkGrayColor];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-    self.navigationItem.title = @"Favorites news";
+}
+
+- (void) configurateNavigationItem {
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor darkGrayColor];
+    self.navigationItem.title = FVC_TITLE_NAME;
 }
 
 - (void) tableViewSetUp {

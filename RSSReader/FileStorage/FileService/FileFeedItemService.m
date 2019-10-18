@@ -8,6 +8,7 @@
 
 #import "FileFeedItemService.h"
 #import "FileFeedItemRepository.h"
+#import "FeedItemConstants.h"
 
 @interface FileFeedItemService ()
 @property (strong, nonatomic) FileFeedItemRepository* fileFeedItemRepository;
@@ -104,7 +105,7 @@ static FileFeedItemService* shared;
         return obj.isFavorite;
     }]];
     
-    return [[NSMutableArray alloc] initWithArray:[favoriteItems valueForKey:@"link"]];
+    return [[NSMutableArray alloc] initWithArray:[favoriteItems valueForKey:ITEM_LINK_KEY]];
 }
 
 - (NSMutableArray<NSString *>*) readingInProgressFeedItemLinks:(NSMutableArray<FeedResource *>*) resources {
@@ -118,7 +119,7 @@ static FileFeedItemService* shared;
         return obj.isReadingInProgress && !obj.isReadingComplite;
     }]]];
     
-    return [[NSMutableArray alloc] initWithArray:[readingInProgressItems valueForKey:@"link"]];
+    return [[NSMutableArray alloc] initWithArray:[readingInProgressItems valueForKey:ITEM_LINK_KEY]];
 }
 
 - (NSMutableArray<NSString *>*) readingCompliteFeedItemLinks:(NSMutableArray<FeedResource *>*) resources {
@@ -131,7 +132,7 @@ static FileFeedItemService* shared;
         return obj.isReadingComplite;
     }]];
     
-    return [[NSMutableArray alloc] initWithArray:[favoriteItems valueForKey:@"link"]];
+    return [[NSMutableArray alloc] initWithArray:[favoriteItems valueForKey:ITEM_LINK_KEY]];
 }
 
 - (NSString *) toTXTFormar:(NSString *) prefix {

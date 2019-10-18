@@ -40,9 +40,8 @@
     for (FeedResource* sqlResource in sqlResources) {
         [self.fileResourceService addFeedResource:sqlResource];
         NSMutableArray<FeedResource *>* resources = [[NSMutableArray alloc] initWithObjects:sqlResource, nil];
-         [self.fileItemService cleanSaveFeedItems:[self.itemService allFeedItemsForResources:resources]];
+        [self.fileItemService cleanSaveFeedItems:[self.itemService allFeedItemsForResources:resources]];
     }
-    
     
     [NSFileManager deleteAllDBFiles];
     [NSFileManager deleteAllSQLITEFiles];

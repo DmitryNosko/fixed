@@ -17,9 +17,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setUp];
-        
-        
-        
     }
     return self;
 }
@@ -30,8 +27,9 @@
     }
 }
 
+#pragma mark - CellSetIp's
+
 - (void) setUp {
-    
     self.backgroundColor = [UIColor clearColor];
     
     self.newsLabel = [UILabel labelWithText:nil andFontSize:18 parentView:self.contentView textColor:[UIColor whiteColor] textAligment:NSTextAlignmentCenter];
@@ -59,8 +57,6 @@
                                               [self.checkBoxButton.heightAnchor constraintEqualToConstant:20],
                                               [self.checkBoxButton.widthAnchor constraintEqualToConstant:20]
                                               ]];
-    
-    
 }
 
 @end

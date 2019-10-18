@@ -99,7 +99,7 @@
     
     self.fetchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.fetchButton setTitle:FETCH_BUTTON_TITLE forState:UIControlStateNormal];
-    [self.fetchButton addTarget:self action:@selector(pushToFetchButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.fetchButton addTarget:self action:@selector(searchButtonWasPressed:) forControlEvents:UIControlEventTouchUpInside];
     self.fetchButton.backgroundColor = [UIColor lightGrayColor];
     self.fetchButton.hidden = YES;
     [self.view addSubview:self.fetchButton];
@@ -169,7 +169,7 @@
                     [weakSelf.tableView reloadData];
                     weakSelf.feedResourceWasAddedHandler(resource);
                 } else {
-                    NSLog(@"exeption");
+                    NSLog(@"%@", EXEPTION_MESSAGE);
                 }
             }
         }];
@@ -186,7 +186,6 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
         FeedResource* resource = [self.feedsResources objectAtIndex:indexPath.row];
         [self.feedResourceServiceFactory removeFeedResource:resource];
         [self.feedsResources removeObjectAtIndex:indexPath.row];
@@ -208,7 +207,6 @@
     
     if (checkBoxButton.checkBoxButton.selected) {
         self.fetchButton.hidden = NO;
-        
         [self.selectedCheckBoxes addObject:indexPath];
     } else {
         [self.selectedCheckBoxes removeObject:indexPath];
@@ -218,7 +216,7 @@
     }
 }
 
-- (void) pushToFetchButton:(id) sender {
+- (void) searchButtonWasPressed:(id) sender {
     NSMutableArray<FeedResource *>* resourcesToLoad = [[NSMutableArray alloc] init];
     
     for (NSIndexPath* ip in [self.selectedCheckBoxes copy]) {

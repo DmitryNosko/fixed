@@ -8,6 +8,7 @@
 
 #import "CoreDataFeedResourceRepository.h"
 #import "NSFetchRequest+NSFetchRequestCategory.h"
+#import "FeedResourceConstants.h"
 
 @implementation CoreDataFeedResourceRepository
 
@@ -35,11 +36,11 @@
     
     //NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:request error:nil];
     
-        NSManagedObject* newResource = [NSEntityDescription insertNewObjectForEntityForName:@"CDFeedResource" inManagedObjectContext:self.peresistentContainer.viewContext];
+        NSManagedObject* newResource = [NSEntityDescription insertNewObjectForEntityForName:RESOURCE_CORE_DATA_NAME inManagedObjectContext:self.peresistentContainer.viewContext];
         
-            [newResource setValue:[resource.identifier UUIDString] forKey:@"identifier"];
-            [newResource setValue:resource.name forKey:@"name"];
-            [newResource setValue:[resource.url absoluteString] forKey:@"url"];
+            [newResource setValue:[resource.identifier UUIDString] forKey:RESOURCE_ID_KEY];
+            [newResource setValue:resource.name forKey:RESOURCE_NAME_KEY];
+            [newResource setValue:[resource.url absoluteString] forKey:RESOURCE_URL_KEY];
             
             NSError* error = nil;
             
@@ -53,9 +54,9 @@
 }
 
 - (void) removeFeedResource:(FeedResource *) resource {
-    NSFetchRequest* resourcesRequest = [NSFetchRequest fetchRequestwithEntity:@"CDFeedResource" context:self.peresistentContainer.viewContext andPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", [resource.identifier UUIDString]]];
+    NSFetchRequest* resourcesRequest = [NSFetchRequest fetchRequestwithEntity:RESOURCE_CORE_DATA_NAME context:self.peresistentContainer.viewContext andPredicate:[NSPredicate predicateWithFormat:@"identifier == %@", [resource.identifier UUIDString]]];
     NSArray<NSManagedObject *>* requestResult = [self.peresistentContainer.viewContext executeFetchRequest:resourcesRequest error:nil];
-    
+    //[self deleteAllObjectsFromResultRquest:requestResult andContext:self.peresistentContainer.viewContext];
 //    [self.peresistentContainer performBackgroundTask:^(NSManagedObjectContext * context) {
 //            NSManagedObjectID* stID = [[requestResult firstObject] objectID];
 //            id obj = [context existingObjectWithID:stID error:nil];
@@ -68,7 +69,7 @@
         id obj = [self.peresistentContainer.viewContext existingObjectWithID:stID error:nil];
         [self.peresistentContainer.viewContext deleteObject:obj];
     }
-    
+
     [self saveContext:self.peresistentContainer.viewContext];
 }
 

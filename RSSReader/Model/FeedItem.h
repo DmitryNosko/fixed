@@ -25,5 +25,7 @@
 @property (strong, nonatomic) FeedResource* resource;
 
 - (instancetype)initWithID:(NSUUID *) identifier itemTitle:(NSString *) itemTitle link:(NSMutableString *) link pubDate:(NSDate *) pubDate itemDescription:(NSMutableString *) itemDescription enclosure:(NSString *) enclosure imageURL:(NSString *) imageURL isFavorite:(BOOL) isFavorite isReadingInProgress:(BOOL) isReadingInProgress isReadingComplite:(BOOL)isReadingComplite isAvailable:(BOOL) isAvailable resourceURL:(NSURL *) resourceURL resource:(FeedResource *) resource;
+- (NSMutableString*) correctDescription:(NSString *) string;
+
 @end;
 

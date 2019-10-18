@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "FeedResourceConstants.h"
 
-NSString* const ID_KEY = @"ID_KEY";
-NSString* const NAME_KEY = @"NAME_KEY";
-NSString* const URL_KEY = @"URL_KEY";
+NSString* const RESOURCE_ID_KEY = @"identifier";
+NSString* const RESOURCE_NAME_KEY = @"name";
+NSString* const RESOURCE_URL_KEY = @"url";
+NSString* const RESOURCE_URL_NAME_KEY = @"resourceURL";
+NSString* const RESOURCE_CORE_DATA_NAME = @"CDFeedResource";

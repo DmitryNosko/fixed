@@ -66,7 +66,7 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self configureNavigationBar];
+    [self configureNavigationItem];
     [self tableViewSetUp];
     [self setUpSettingsView];
     [self timeRangeSetUp];
@@ -120,7 +120,6 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
 }
 
 - (void) filterNewsByDate {
-    
     self.isSelectedEditButton = !self.isSelectedEditButton;
     
     if (self.isSelectedEditButton) {
@@ -131,19 +130,19 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
         self.settingsView.hidden = YES;
         self.tableView.scrollEnabled = YES;
         self.tableView.userInteractionEnabled = YES;
-        NSUInteger timeRange = [[NSUserDefaults standardUserDefaults] integerForKey:TIME_RANGE_KEY];
-        
-        [self.displayedFeeds removeAllObjects];
-        
-        NSMutableArray<FeedItem *>* itemsToSort = [self.feedItemServiceFactory feedItemsForResources:[[NSMutableArray alloc] initWithArray:[self.feedResourceByURL allValues]]];
-        
-        for (FeedItem* item in itemsToSort) {
-            if (ABS([item.pubDate timeIntervalSinceNow]) < 60 * 60 * 24 * timeRange) {
-                [self.displayedFeeds addObject:item];
-            }
-        }
-        [self.tableView reloadData];
+        [self sortNewsByTimeRange];
     }
+}
+
+- (void) sortNewsByTimeRange {
+    [self.displayedFeeds removeAllObjects];
+    NSMutableArray<FeedItem *>* itemsToSort = [self.feedItemServiceFactory feedItemsForResources:[[NSMutableArray alloc] initWithArray:[self.feedResourceByURL allValues]]];
+    for (FeedItem* item in itemsToSort) {
+        if (ABS([item.pubDate timeIntervalSinceNow]) < SECONDS_IN_DAY * [[NSUserDefaults standardUserDefaults] integerForKey:TIME_RANGE_KEY]) {
+            [self.displayedFeeds addObject:item];
+        }
+    }
+    [self.tableView reloadData];
 }
 
 - (void) timeRangeChanged {
@@ -171,13 +170,11 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
     MainTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
     cell.listener = self;
     cell.titleLabel.text = [self.displayedFeeds objectAtIndex:indexPath.row].itemTitle;
-    
     FeedItem* item = [self.displayedFeeds objectAtIndex:indexPath.row];
     
     if (item.isReadingInProgress) {
         cell.stateLabel.text = READING_NEWS_STATUS;
     }
-    
     if ([self.favoriteItemsLinks containsObject:item.link]) {
         [cell.favoritesButton setImage:[UIImage imageNamed:FULL_STAR_BUTTON_IMAGE] forState:UIControlStateNormal];
     }
@@ -362,7 +359,6 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
                                               ]];
 }
 
-
 - (void) timeRangeSetUp {
     NSUInteger timeRange = [[NSUserDefaults standardUserDefaults] integerForKey:TIME_RANGE_KEY];
     if (!timeRange) {
@@ -400,9 +396,9 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
     [NSUserDefaults.standardUserDefaults synchronize];
 }
 
-- (void) configureNavigationBar {
+- (void) configureNavigationItem {
     self.navigationItem.title = MAIN_VIEW_CONTROLLER_TITLE;
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithTitle:@"Resources" image:nil block:^{
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithTitle:MVC_BACK_BUTTON_NAME image:nil block:^{
         [self.delegate handleMenuToggle];
     }];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem barButtonItemWithTitle:nil image:[UIImage imageNamed:SETTINGS_BUTTON_IMAGE] block:^{
@@ -414,9 +410,7 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
 #pragma mark - Shake gesture
 
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-    
     [self.displayedFeeds removeAllObjects];
-    
     __weak MainViewController* weakSelf = self;
     self.rssParser.feedItemDownloadedHandler = ^(FeedItem *item) {
         NSThread* thread = [[NSThread alloc] initWithBlock:^{
@@ -425,24 +419,19 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
         }];
         [thread start];
     };
-    
     for (NSURL* url in [self.feedResourceByURL allKeys]) {
         [self.rssParser rssParseWithURL:url];
     }
-    
 }
 
 #pragma mark - MenuViewControllerHandlers
 
 - (void) feedResourceWasAddedHandlerMethod {
     __weak MainViewController* weakSelf = self;
-    
     self.feedResourceWasAddedHandler = ^(FeedResource *resource) {
         [weakSelf.displayedFeeds removeAllObjects];
         [weakSelf.parsedFeeds removeAllObjects];
-        
         [weakSelf.feedResourceByURL setObject:resource forKey:resource.url];
-        
         weakSelf.rssParser.feedItemDownloadedHandler = ^(FeedItem *item) {
             NSThread* thread = [[NSThread alloc] initWithBlock:^{
                 [weakSelf addParsedFeedItemToFeeds:item];
@@ -450,19 +439,14 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
             }];
             [thread start];
         };
-        
         [weakSelf.rssParser rssParseWithURL:resource.url];
     };
 }
 
-
-
 - (void) feedResourceWasChosenHandlerMethod {
     __weak MainViewController* weakSelf = self;
     self.feedResourceWasChosenHandler = ^(FeedResource *resource) {
-        //NSMutableArray<FeedItem*>* items = [weakSelf.feedItemServiceFactory feedItemsForResource:resource];
-        NSMutableArray<FeedItem*>* items = [weakSelf.feedItemServiceFactory feedItemsForResources:[[NSMutableArray alloc] initWithObjects:resource, nil]];
-        weakSelf.displayedFeeds = items;
+        weakSelf.displayedFeeds = [weakSelf.feedItemServiceFactory feedItemsForResources:[[NSMutableArray alloc] initWithObjects:resource, nil]];
         [weakSelf.tableView reloadData];
     };
 }
@@ -504,7 +488,6 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
     self.fetchButtonWasPressedHandler = ^(NSMutableArray<FeedResource *> *resource) {
         [weakSelf.displayedFeeds removeAllObjects];
         [weakSelf.parsedFeeds removeAllObjects];
-        
         weakSelf.rssParser.feedItemDownloadedHandler = ^(FeedItem *item) {
             NSThread* thread = [[NSThread alloc] initWithBlock:^{
                 [weakSelf addParsedFeedItemToFeeds:item];
@@ -519,4 +502,3 @@ NSString* const MainViewControllerStorageWasChangedNotification = @"MainViewCont
 }
 
 @end
-
