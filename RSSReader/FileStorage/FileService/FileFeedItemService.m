@@ -101,6 +101,7 @@ static FileFeedItemService* shared;
     for (FeedResource* resource in resources) {
         [allItems addObjectsFromArray:[self.fileFeedItemRepository readFeedItemsFile:[self toTXTFormar:resource.name]]];
     }
+    
     NSArray<FeedItem *>* favoriteItems = [allItems filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FeedItem*  _Nullable obj, NSDictionary<NSString *,id> * _Nullable bindings) {
         return obj.isFavorite;
     }]];

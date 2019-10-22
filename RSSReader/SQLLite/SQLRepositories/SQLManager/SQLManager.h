@@ -21,4 +21,6 @@
 - (NSMutableArray<NSString *>*) feedItemsLinks:(NSMutableArray<NSUUID *>*) resourcesIDs withDBPath:(const char*) dbPath db:(sqlite3*) dataBase request:(const char*) request;
 - (NSMutableArray<FeedItem *>*) feedItemsFromResource:(NSMutableArray<NSUUID *>*) resourcesIDs withDBPath:(const char*) dbPath db:(sqlite3*) dataBase request:(const char*) request;
 - (NSString *) prepareQueryParameters:(NSArray<id>*) parameters;
+- (NSMutableArray<FeedResource *> *) resourcesFromRequest:(const char *) request;
+
 @end

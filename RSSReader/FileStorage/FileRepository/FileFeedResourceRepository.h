@@ -7,11 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FeedResource.h"
-#import "FeedItem.h"
+#import "FileManager.h"
 
-
-@interface FileFeedResourceRepository : NSObject
+@interface FileFeedResourceRepository : FileManager
 
 - (void)saveFeedResource:(FeedResource*) resource toFileWithName:(NSString*) fileName;
 - (NSMutableArray<FeedResource *> *) feedResources:(NSString*) fileName;

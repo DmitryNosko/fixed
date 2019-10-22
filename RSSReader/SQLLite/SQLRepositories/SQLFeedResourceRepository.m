@@ -25,59 +25,11 @@
 }
 
 - (NSMutableArray<FeedResource *>*) feedResources {
-    
-    sqlite3_stmt *statement;
-    const char *dbpath = [self dataBasePath];
-    FeedResource* resource = nil;
-    
-    NSMutableArray<FeedResource *>* resources = [NSMutableArray array];
-    
-    if (sqlite3_open(dbpath, &rssDataBase) == SQLITE_OK) {
-        
-        if (sqlite3_prepare_v2(rssDataBase, SELECT_FEEDRESOURCE_SQL, -1, &statement, NULL) == SQLITE_OK) {
-            
-            while (sqlite3_step(statement) == SQLITE_ROW) {
-                NSUUID* identifier = [[NSUUID alloc] initWithUUIDString:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)]];
-                NSString *name = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
-                NSURL* url = [NSURL URLWithString:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)]];
-                
-                resource = [[FeedResource alloc] initWithID:identifier name:name url:url];
-                [resources addObject:resource];
-            }
-        }
-        sqlite3_finalize(statement);
-        sqlite3_close(rssDataBase);
-    }
-    
-    return resources;
+    return [self resourcesFromRequest:SELECT_FEEDRESOURCE_SQL];
 }
 
 - (FeedResource *) resourceByURL:(NSURL *) url {
-    sqlite3_stmt *statement;
-    const char *dataBasePath = [self dataBasePath];
-    
-    FeedResource* resource = nil;
-    
-    if (sqlite3_open(dataBasePath, &rssDataBase) == SQLITE_OK) {
-        
-        const char *selectFeedResourceStatement = [[NSString stringWithFormat:SELECT_FEEDRESOURSE_BY_URL, url.absoluteString] UTF8String];
-        
-        if (sqlite3_prepare_v2(rssDataBase, selectFeedResourceStatement, -1, &statement, NULL) == SQLITE_OK) {
-            
-            while (sqlite3_step(statement) == SQLITE_ROW) {
-                NSUUID* identifier = [[NSUUID alloc] initWithUUIDString:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)]];
-                NSString *name = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
-                NSURL* url = [NSURL URLWithString:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)]];
-                
-                resource = [[FeedResource alloc] initWithID:identifier name:name url:url];
-                
-            }
-        }
-        sqlite3_finalize(statement);
-        sqlite3_close(rssDataBase);
-    }
-    
-    return resource;
+    return [[self resourcesFromRequest:[[NSString stringWithFormat:SELECT_FEEDRESOURSE_BY_URL, url.absoluteString] UTF8String]] firstObject];
 }
 
 @end

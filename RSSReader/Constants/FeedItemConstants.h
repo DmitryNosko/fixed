@@ -25,5 +25,9 @@ extern NSString* const ITEM_FEED_RESOURCE_KEY;
 extern NSString* const ITEM_CORE_DATA_NAME;
 extern NSString* const PATTERN_FOR_VALIDATION;
 
+extern NSString* const ITEM_TAG;
+extern NSString* const URL_TAG;
+extern NSString* const TITLE_TAG;
+extern NSString* const DESCRIPTION_TAG;
 #endif /* FeedItemConstants_h */
 

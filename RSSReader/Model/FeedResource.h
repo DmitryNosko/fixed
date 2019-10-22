@@ -13,4 +13,6 @@
 @property (strong, nonatomic) NSString* name;
 @property (strong, nonatomic) NSURL* url;
 - (instancetype)initWithID:(NSUUID *) identifier name:(NSString *) name url:(NSURL *) url;
++ (NSData *) encodeResourceInArray:(FeedResource *) resource;
++ (NSData *) archive:(FeedResource *) resource;
 @end

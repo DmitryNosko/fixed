@@ -41,19 +41,15 @@
 }
 
 - (NSMutableArray<FeedItem *>*) feedItemsForResource:(NSUUID *) identifier {
-    
-    const char *dbpath = [self dataBasePath];
     sqlite3_stmt *statement;
     NSMutableArray<FeedItem *>* items = [NSMutableArray array];
     
-    if (sqlite3_open(dbpath, &rssDataBase) == SQLITE_OK) {
+    if (sqlite3_open([self dataBasePath], &rssDataBase) == SQLITE_OK) {
         
         const char *selectFeedItemsStatement = [[NSString stringWithFormat:SELECT_FEEDITEM_BY_ID, [identifier UUIDString]] UTF8String];
         
         if (sqlite3_prepare_v2(rssDataBase, selectFeedItemsStatement, -1, &statement, NULL) == SQLITE_OK) {
-            
             NSLog(@"Statement was prepared for SELECT_FEEDITEM_BY_ID %@", @(selectFeedItemsStatement));
-            
             while (sqlite3_step(statement) == SQLITE_ROW) {
                 
                 NSUUID* itemID = [[NSUUID alloc] initWithUUIDString:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)]];

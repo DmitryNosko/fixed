@@ -27,7 +27,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self setUp];
     [self configurateNavigationItem];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     if (![self.itemURLString isEqualToString:@""]) {
         NSThread* thread = [[NSThread alloc] initWithBlock:^{
             NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:self.itemURLString]];
@@ -68,8 +71,9 @@
                                               [self.itemTitel.centerXAnchor constraintEqualToAnchor:self.scrollView.centerXAnchor]
                                               ]];
     
+    self.itemDescription = [UILabel labelWithText:[NSString stringWithFormat:@"Description: %@", self.itemDescriptionString] andFontSize:16 parentView:self.scrollView textColor:[UIColor blackColor] textAligment:NSTextAlignmentCenter];
+    
     if (self.hasInternetConnection) {
-        
         
         self.itemImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:NO_PHOTO_IMAGE]];
         [self.scrollView addSubview:self.itemImage];
@@ -91,26 +95,28 @@
                                                   [self.itemDate.trailingAnchor constraintEqualToAnchor:self.scrollView.trailingAnchor constant:-10],
                                                   [self.itemDate.centerXAnchor constraintEqualToAnchor:self.scrollView.centerXAnchor]
                                                   ]];
-        
-        
-        self.itemDescription = [UILabel labelWithText:[NSString stringWithFormat:@"Description: %@", self.itemDescriptionString] andFontSize:16 parentView:self.scrollView textColor:[UIColor blackColor] textAligment:NSTextAlignmentCenter];
+
         [NSLayoutConstraint activateConstraints:@[
-                                                  [self.itemDescription.topAnchor constraintEqualToAnchor:self.itemDate.bottomAnchor constant:50],
-                                                  [self.itemDescription.leadingAnchor constraintEqualToAnchor:self.scrollView.leadingAnchor constant:10],
-                                                  [self.itemDescription.trailingAnchor constraintEqualToAnchor:self.scrollView.trailingAnchor constant:-10],
-                                                  [self.itemDescription.bottomAnchor constraintEqualToAnchor:self.scrollView.bottomAnchor],
-                                                  [self.itemDescription.centerXAnchor constraintEqualToAnchor:self.scrollView.centerXAnchor]
+                                                  [self.itemDescription.topAnchor constraintEqualToAnchor:self.itemDate.bottomAnchor constant:15],
+                                                  [self.itemDescription.bottomAnchor constraintEqualToAnchor:self.scrollView.bottomAnchor]
                                                   ]];
-    } else {
-        self.itemDescription = [UILabel labelWithText:[NSString stringWithFormat:@"Description: %@", self.itemDescriptionString] andFontSize:16 parentView:self.scrollView textColor:[UIColor blackColor] textAligment:NSTextAlignmentCenter];
-        [NSLayoutConstraint activateConstraints:@[
-                                                  [self.itemDescription.topAnchor constraintEqualToAnchor:self.itemTitel.bottomAnchor constant:30],
-                                                  [self.itemDescription.leadingAnchor constraintEqualToAnchor:self.scrollView.leadingAnchor constant:10],
-                                                  [self.itemDescription.trailingAnchor constraintEqualToAnchor:self.scrollView.trailingAnchor constant:-10],
-                                                  [self.itemDescription.centerXAnchor constraintEqualToAnchor:self.scrollView.centerXAnchor]
-                                                  ]];
-    }
+        [self configurateItemDescriptionHasConnection];
     
+    } else {
+        [NSLayoutConstraint activateConstraints:@[
+                                                  [self.itemDescription.topAnchor constraintEqualToAnchor:self.itemTitel.bottomAnchor constant:30]
+                                                  ]];
+        [self configurateItemDescriptionHasConnection];
+    }
+
+}
+
+- (void) configurateItemDescriptionHasConnection {
+    [NSLayoutConstraint activateConstraints:@[
+                                              [self.itemDescription.leadingAnchor constraintEqualToAnchor:self.scrollView.leadingAnchor constant:10],
+                                              [self.itemDescription.trailingAnchor constraintEqualToAnchor:self.scrollView.trailingAnchor constant:-10],
+                                              [self.itemDescription.centerXAnchor constraintEqualToAnchor:self.scrollView.centerXAnchor]
+                                              ]];
 }
 
 - (void) configurateNavigationItem {

@@ -82,13 +82,23 @@
 
 - (NSMutableString*) correctDescription:(NSString *) string  {
     NSRegularExpression* regularExpression = [NSRegularExpression regularExpressionWithPattern:PATTERN_FOR_VALIDATION
-                                                                                        options:NSRegularExpressionCaseInsensitive
+                                                                                       options:NSRegularExpressionCaseInsensitive
                                                                                             error:nil];
     string = [regularExpression stringByReplacingMatchesInString:string
                                                              options:0
                                                                range:NSMakeRange(0, [string length])
                                                         withTemplate:@""];
     return [string mutableCopy];
+}
+
+#pragma mark - Methods
+
++ (NSData *) encodeItemInArray:(FeedItem *) item {
+    return [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] initWithObjects:[NSKeyedArchiver archivedDataWithRootObject:item], nil]];
+}
+
++ (NSData *) archive:(FeedItem *) item {
+    return [NSKeyedArchiver archivedDataWithRootObject:item];
 }
 
 @end

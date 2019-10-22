@@ -9,7 +9,7 @@
 #ifndef SQLManagerConstants_h
 #define SQLManagerConstants_h
 
-extern NSString* const DATA_BASE_NAME;
-extern const char* CREATE_FEEDRESOURCE_SQL;
-extern const char* CREATE_FEEDITEM_SQL;
+extern NSString* const SQL_DATA_BASE_NAME;
+extern const char* SQL_CREATE_FEEDRESOURCE;
+extern const char* SQL_CREATE_FEEDITEM;
 #endif /* SQLManagerConstants_h */

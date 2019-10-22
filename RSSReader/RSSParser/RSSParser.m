@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "RSSParserConstants.h"
 #import "NSString+NSStringDateCategory.h"
+#import "FeedItemConstants.h"
 
 @interface RSSParser () <NSXMLParserDelegate>
 @property (strong, nonatomic) NSString* element;
@@ -49,7 +50,7 @@
     }
     if ([self.element isEqualToString:ITEM_TAG]) {
         self.feedItem = [[FeedItem alloc] init];
-    } else if ([self.element isEqualToString:ENCLOUSURE_TAG]) {
+    } else if ([self.element isEqualToString:ITEM_ENCLOSURE_KEY]) {
         self.feedItem.imageURL = [attributeDict objectForKey:URL_TAG];
     }
 }
@@ -70,9 +71,9 @@
     if (![trimmed isEqualToString:END_OF_STRING]) {
         if ([self.element isEqualToString:TITLE_TAG]) {
             self.feedItem.itemTitle = string;
-        } else if ([self.element isEqualToString:LINK_TAG]) {
+        } else if ([self.element isEqualToString:ITEM_LINK_KEY]) {
             [self.feedItem.link appendString:string];
-        } else if ([self.element isEqualToString:PUBDATE_TAG]) {
+        } else if ([self.element isEqualToString:ITEM_PUBDATE_KEY]) {
             self.feedItem.pubDate = [string toDate];
         } else if ([self.element isEqualToString:DESCRIPTION_TAG]) {
             [self.feedItem.itemDescription appendString:string];

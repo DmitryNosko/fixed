@@ -10,6 +10,7 @@
 #import "FileFeedItemService.h"
 #import "SQLFeedItemService.h"
 #import "CoreDataFeedItemService.h"
+#import "FeedFactoriesConstants.h"
 
 @interface FeedItemServiceFactory()
 @property (strong, nonatomic) FileFeedItemService* fileFeedItemService;
@@ -32,9 +33,9 @@
 }
 
 - (id<FeedItemServiceProtocol>) feedItemServiceProtocol {
-    if (self.storageValue.intValue == 0) {
+    if (self.storageValue.intValue == FILE_STORAGE_VALUE) {
         return self.fileFeedItemService;
-    } else if (self.storageValue.intValue == 1) {
+    } else if (self.storageValue.intValue == SQL_STORAGE_VALUE) {
         return self.sqlFeedItemService;
     } else {
         return self.cdFeedItemService;

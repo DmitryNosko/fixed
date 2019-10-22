@@ -7,47 +7,29 @@
 //
 
 #import "FileFeedItemRepository.h"
-#import "NSFileManager+NSFileManagerCategory.h"
-
-@interface FileFeedItemRepository()
-@property (strong, nonatomic) NSFileManager* fileManager;
-@end
 
 @implementation FileFeedItemRepository
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _fileManager = [NSFileManager defaultManager];
-    }
-    return self;
-}
-
 #pragma mark - FeedItem
 
-- (void)saveFeedItem:(FeedItem*) item toFileWithName:(NSString*) fileName {
+- (void) saveFeedItem:(FeedItem*) item toFileWithName:(NSString*) fileName {
     if (item) {
-        NSMutableArray* encodedItems = [[NSMutableArray alloc] initWithObjects:[NSKeyedArchiver archivedDataWithRootObject:item], nil];
-        
-        NSData* encodedArray = [NSKeyedArchiver archivedDataWithRootObject:encodedItems];
         
         NSString* filePath = [NSFileManager pathForFile:fileName];
         
         if ([self.fileManager fileExistsAtPath:filePath]) {
-            //load file
+
             NSMutableArray<FeedItem *>* decodedItems = [self readFeedItemsFile:fileName];
             NSMutableArray<NSData *>* encodedFileContent = [[NSMutableArray alloc] init];
             for (FeedItem* decodedItem in decodedItems) {
-                [encodedFileContent addObject:[NSKeyedArchiver archivedDataWithRootObject:decodedItem]];
+                [encodedFileContent addObject:[FeedItem archive:decodedItem]];
             }
             
-            [encodedFileContent addObject:[NSKeyedArchiver archivedDataWithRootObject:item]];
-            NSData* encodedFileData = [NSKeyedArchiver archivedDataWithRootObject:encodedFileContent];
-            [encodedFileData writeToFile:filePath atomically:YES];
+            [encodedFileContent addObject:[FeedItem archive:item]];
+            [[NSKeyedArchiver archivedDataWithRootObject:encodedFileContent] writeToFile:filePath atomically:YES];
             
         } else {
-            [self.fileManager createFileAtPath:filePath contents:encodedArray attributes:nil];
+            [self.fileManager createFileAtPath:filePath contents:[FeedItem encodeItemInArray:item] attributes:nil];
         }
     }
     
@@ -87,20 +69,18 @@
             [items removeObject:feedItem];
         }
     }
-    
     [self removeAllObjectsFormFile:fileName];
-    
     for (FeedItem* fI in [items copy]) {
         [self saveFeedItem:fI toFileWithName:fileName];
     }
 }
 
-- (void)createAndSaveFeedItems:(NSMutableArray<FeedItem*>*) items toFileWithName:(NSString*) fileName {
+- (void) createAndSaveFeedItems:(NSMutableArray<FeedItem*>*) items toFileWithName:(NSString*) fileName {
     NSMutableArray<NSData*>* encodedItems = [[NSMutableArray alloc] init];
     
     for (FeedItem* item in [items copy]) {
         if (item) {
-            [encodedItems addObject:[NSKeyedArchiver archivedDataWithRootObject:item]];
+            [encodedItems addObject:[FeedItem archive:item]];
         }
     }
     
@@ -138,19 +118,15 @@
 - (void) removeString:(NSString *) string fromFile:(NSString *) fileName {
     if ([self.fileManager fileExistsAtPath:[NSFileManager pathForFile:fileName]]) {
         NSMutableArray<NSString *>* strings = [self readStringsFromFile:fileName];
-        
         for (NSString* str in [strings copy]) {
             if ([str isEqualToString:string]) {
                 [strings removeObject:str];
             }
         }
-        
         [self removeAllObjectsFormFile:fileName];
-        
-        for (NSString* str in strings) {
+                for (NSString* str in strings) {
             [self saveString:str toFile:fileName];
         }
-        
     }
 }
 

@@ -7,31 +7,13 @@
 //
 
 #import "FileFeedResourceRepository.h"
-#import "NSFileManager+NSFileManagerCategory.h"
-
-@interface FileFeedResourceRepository()
-@property (strong, nonatomic) NSFileManager* fileManager;
-@end
 
 @implementation FileFeedResourceRepository
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _fileManager = [NSFileManager defaultManager];
-    }
-    return self;
-}
 
 #pragma mark - FeedResource
 
 - (void)saveFeedResource:(FeedResource*) resource toFileWithName:(NSString*) fileName {
     if (resource) {
-        NSMutableArray* encodedResource = [[NSMutableArray alloc] initWithObjects:[NSKeyedArchiver archivedDataWithRootObject:resource], nil];
-        
-        NSData* encodedArray = [NSKeyedArchiver archivedDataWithRootObject:encodedResource];
-        
         NSString* filePath = [NSFileManager pathForFile:fileName];
         
         if ([self.fileManager fileExistsAtPath:filePath]) {
@@ -39,16 +21,16 @@
             NSMutableArray<FeedResource *>* decodedResources = [self feedResources:fileName];
             NSMutableArray<NSData *>* encodedFileContent = [[NSMutableArray alloc] init];
             for (FeedResource* decodedResource in decodedResources) {
-                [encodedFileContent addObject:[NSKeyedArchiver archivedDataWithRootObject:decodedResource]];
+                [encodedFileContent addObject:[FeedResource archive:decodedResource]];
             }
             
-            [encodedFileContent addObject:[NSKeyedArchiver archivedDataWithRootObject:resource]];
+            [encodedFileContent addObject:[FeedResource archive:resource]];
             
             NSData* encodedFileData = [NSKeyedArchiver archivedDataWithRootObject:encodedFileContent];
             [encodedFileData writeToFile:filePath atomically:YES];
             
         } else {
-            [self.fileManager createFileAtPath:filePath contents:encodedArray attributes:nil];
+            [self.fileManager createFileAtPath:filePath contents:[FeedResource encodeResourceInArray:resource] attributes:nil];
         }
     }
 }
@@ -63,7 +45,6 @@
         FeedResource* resource = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         [decodedResources addObject:resource];
     }
-    
     return decodedResources;
 }
 
@@ -75,9 +56,7 @@
             [resorces removeObject:feedResource];
         }
     }
-    
     [NSFileManager removeAllObjectsFormFile:fileName];
-    
     for (FeedResource* fR in [resorces copy]) {
         [self saveFeedResource:fR toFileWithName:fileName];
     }

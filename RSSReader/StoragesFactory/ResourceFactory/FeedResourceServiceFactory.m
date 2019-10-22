@@ -10,6 +10,7 @@
 #import "FileFeedResourceService.h"
 #import "SQLFeedResourceService.h"
 #import "CoreDataFeedResourceService.h"
+#import "FeedFactoriesConstants.h"
 
 @interface FeedResourceServiceFactory()
 @property (strong, nonatomic) FileFeedResourceService* fileFeedResourceService;
@@ -32,9 +33,9 @@
 }
 
 - (id<FeedResourceServiceProtocol>) feedResourceServiceProtocol {
-    if (self.storageValue.intValue == 0) {
+    if (self.storageValue.intValue == FILE_STORAGE_VALUE) {
         return self.fileFeedResourceService;
-    } else if (self.storageValue.intValue == 1) {
+    } else if (self.storageValue.intValue == SQL_STORAGE_VALUE) {
         return self.sqlFeedResourceService;
     } else {
         return self.cdFeedResourceService;

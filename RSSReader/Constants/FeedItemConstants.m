@@ -24,3 +24,8 @@ NSString* const ITEM_FEED_RESOURCE_URL_KEY = @"resourceURL";
 NSString* const ITEM_FEED_RESOURCE_KEY = @"resource";
 NSString* const ITEM_CORE_DATA_NAME = @"CDFeedItem";
 NSString* const PATTERN_FOR_VALIDATION = @"<\/?[A-Za-z]+[^>]*>";
+
+NSString* const ITEM_TAG = @"item";
+NSString* const URL_TAG = @"url";
+NSString* const TITLE_TAG = @"title";
+NSString* const DESCRIPTION_TAG = @"description";

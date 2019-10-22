@@ -42,7 +42,6 @@ static FileFeedResourceService* shared;
 }
 
 - (FeedResource *) resourceByURL:(NSURL *) url {
-    
     NSMutableArray<FeedResource *>* resources = [self.fileFeedResourceRepository feedResources:MENU_FILE_NAME];
     FeedResource* res = nil;
     for (FeedResource* resource in resources) {

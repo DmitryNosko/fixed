@@ -50,4 +50,14 @@
     return self;
 }
 
+#pragma mark - Methods
+
++ (NSData *) encodeResourceInArray:(FeedResource *) resource {
+    return [NSKeyedArchiver archivedDataWithRootObject:[[NSMutableArray alloc] initWithObjects:[NSKeyedArchiver archivedDataWithRootObject:resource], nil]];
+}
+
++ (NSData *) archive:(FeedResource *) resource {
+    return [NSKeyedArchiver archivedDataWithRootObject:resource];
+}
+
 @end

@@ -73,6 +73,9 @@
 		78FD5E502315036400510D99 /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD5E4F2315036400510D99 /* MainTableViewCell.m */; };
 		78FD5E5323152A1A00510D99 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD5E5223152A1A00510D99 /* DetailsViewController.m */; };
 		78FD5E56231537DF00510D99 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD5E55231537DF00510D99 /* Reachability.m */; };
+		CE34A8CC235B568500739686 /* CoreDataContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = CE34A8CB235B568500739686 /* CoreDataContacts.m */; };
+		CE513B70235C4F980052C7FA /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE513B6F235C4F980052C7FA /* FileManager.m */; };
+		CE513B77235C6EA10052C7FA /* FeedFactoriesConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CE513B76235C6EA10052C7FA /* FeedFactoriesConstants.m */; };
 		CED92096235370C90069BD90 /* CoreDataMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = CED92095235370C90069BD90 /* CoreDataMigrator.m */; };
 /* End PBXBuildFile section */
 
@@ -209,6 +212,12 @@
 		78FD5E5223152A1A00510D99 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		78FD5E54231537DF00510D99 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		78FD5E55231537DF00510D99 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		CE34A8CA235B565F00739686 /* CoreDataContacts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataContacts.h; sourceTree = "<group>"; };
+		CE34A8CB235B568500739686 /* CoreDataContacts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataContacts.m; sourceTree = "<group>"; };
+		CE513B6E235C4F980052C7FA /* FileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		CE513B6F235C4F980052C7FA /* FileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		CE513B75235C6E8B0052C7FA /* FeedFactoriesConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedFactoriesConstants.h; sourceTree = "<group>"; };
+		CE513B76235C6EA10052C7FA /* FeedFactoriesConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedFactoriesConstants.m; sourceTree = "<group>"; };
 		CED92094235370C90069BD90 /* CoreDataMigrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataMigrator.h; sourceTree = "<group>"; };
 		CED92095235370C90069BD90 /* CoreDataMigrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataMigrator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -454,6 +463,10 @@
 				7808F5DC234B4AFC00A20F61 /* MainViewControllerConstants.m */,
 				7808F5E2234B5AF700A20F61 /* MenuViewControlellerConstants.h */,
 				7808F5E3234B5B9900A20F61 /* MenuViewControllerConstants.m */,
+				CE34A8CA235B565F00739686 /* CoreDataContacts.h */,
+				CE34A8CB235B568500739686 /* CoreDataContacts.m */,
+				CE513B75235C6E8B0052C7FA /* FeedFactoriesConstants.h */,
+				CE513B76235C6EA10052C7FA /* FeedFactoriesConstants.m */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -587,6 +600,7 @@
 		7865E8B22334C6D300111BF3 /* FileRepository */ = {
 			isa = PBXGroup;
 			children = (
+				CE513B71235C4FA20052C7FA /* FileManager */,
 				7865E8B92334C73F00111BF3 /* FileFeedResourceRepository.h */,
 				7865E8BA2334C73F00111BF3 /* FileFeedResourceRepository.m */,
 				7865E8BC2334C75000111BF3 /* FileFeedItemRepository.h */,
@@ -635,6 +649,15 @@
 				7808F59423476C5100A20F61 /* NSCategories */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		CE513B71235C4FA20052C7FA /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				CE513B6E235C4F980052C7FA /* FileManager.h */,
+				CE513B6F235C4F980052C7FA /* FileManager.m */,
+			);
+			path = FileManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -715,6 +738,7 @@
 				7808F5A2234775F100A20F61 /* SQLManager.m in Sources */,
 				7865E879232BCD9800111BF3 /* SQLFeedResourceRepository.m in Sources */,
 				7808F5EA234B791000A20F61 /* UIVisualEffectView+UIVisualEffectViewCategory.m in Sources */,
+				CE513B77235C6EA10052C7FA /* FeedFactoriesConstants.m in Sources */,
 				780272A02313EC0000EB860B /* RSSReader.xcdatamodeld in Sources */,
 				7808F5C7234B3A4600A20F61 /* InternetConnectionConstants.m in Sources */,
 				7865E8B52334C6EF00111BF3 /* FileFeedItemService.m in Sources */,
@@ -745,6 +769,7 @@
 				7808F5C4234B39A900A20F61 /* DetailsViewControllerConstants.m in Sources */,
 				780726E923191183000BF435 /* MenuHeaderView.m in Sources */,
 				7808F5A523477E0100A20F61 /* NSUUID+NSUUIDCategory.m in Sources */,
+				CE513B70235C4F980052C7FA /* FileManager.m in Sources */,
 				7865E8B82334C6FD00111BF3 /* FileFeedResourceService.m in Sources */,
 				7865E873232BCD4200111BF3 /* SQLFeedResourceService.m in Sources */,
 				7808F5EE234F1A1C00A20F61 /* CoreDataController.m in Sources */,
@@ -754,6 +779,7 @@
 				7808F5F2234F5C6200A20F61 /* CoreDataFeedItemService.m in Sources */,
 				780726DD2317FAAF000BF435 /* MenuViewController.m in Sources */,
 				7808F5B92347A44C00A20F61 /* RSSURLValidatorConstants.m in Sources */,
+				CE34A8CC235B568500739686 /* CoreDataContacts.m in Sources */,
 				780726E023180938000BF435 /* MenuTableViewCell.m in Sources */,
 				7808F5F5234F5C7200A20F61 /* CoreDataFeedResourceService.m in Sources */,
 				7865E8D32334C91500111BF3 /* FileDataSourceMigrator.m in Sources */,
