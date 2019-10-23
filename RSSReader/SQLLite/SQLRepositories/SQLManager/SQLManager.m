@@ -115,33 +115,37 @@
                     NSURL *resURL = [NSURL URLWithString:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 14)]];
                     
                     FeedResource* resource = [[FeedResource alloc] initWithID:resourceID name:resourceName url:resURL];
-                    item = [[FeedItem alloc] initWithID:itemID
-                                                        itemTitle:itemTitle
-                                                             link:link
-                                                          pubDate:pubDate
-                                                  itemDescription:itemDescription
-                                                        enclosure:enclousure
-                                                         imageURL:imageURL
-                                                       isFavorite:isFavorite
-                                              isReadingInProgress:isReadingInProgress
-                                                isReadingComplite:isReadingComplite
-                                                      isAvailable:isAvailable
-                                                      resourceURL:resourceURL
-                                                         resource:resource];
+                    item = [[[[[[[[[[[[[[[[FeedItemBuilderService alloc] init]
+                                                   buildIdentifier:itemID]
+                                                  buildItemTitle:itemTitle]
+                                                 buildLink:link]
+                                                buildPubDate:pubDate]
+                                               buildItemDescription:itemDescription]
+                                              buildEnclosure:enclousure]
+                                             buildImageURL:imageURL]
+                                            buildIsFavorite:isFavorite]
+                                           buildIsReadingInProgress:isReadingInProgress]
+                                          buildIsReadingComplite:isReadingComplite]
+                                         buildIsAvailable:isAvailable]
+                                        buildResourceURL:resourceURL]
+                                       buildResource:resource]
+                                      buildFeedItem];
                 } else {
-                    item = [[FeedItem alloc] initWithID:itemID
-                                              itemTitle:itemTitle
-                                                   link:link
-                                                pubDate:pubDate
-                                        itemDescription:itemDescription
-                                              enclosure:enclousure
-                                               imageURL:imageURL
-                                             isFavorite:isFavorite
-                                    isReadingInProgress:isReadingInProgress
-                                      isReadingComplite:isReadingComplite
-                                            isAvailable:isAvailable
-                                            resourceURL:resourceURL
-                                               resource:nil];
+                    item = [[[[[[[[[[[[[[[[FeedItemBuilderService alloc] init]
+                                                   buildIdentifier:itemID]
+                                                  buildItemTitle:itemTitle]
+                                                 buildLink:link]
+                                                buildPubDate:pubDate]
+                                               buildItemDescription:itemDescription]
+                                              buildEnclosure:enclousure]
+                                             buildImageURL:imageURL]
+                                            buildIsFavorite:isFavorite]
+                                           buildIsReadingInProgress:isReadingInProgress]
+                                          buildIsReadingComplite:isReadingComplite]
+                                         buildIsAvailable:isAvailable]
+                                        buildResourceURL:resourceURL]
+                                       buildResource:nil]
+                                      buildFeedItem];
                 }
                 [items addObject:item];
             }

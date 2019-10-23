@@ -77,6 +77,7 @@
 		CE513B70235C4F980052C7FA /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE513B6F235C4F980052C7FA /* FileManager.m */; };
 		CE513B77235C6EA10052C7FA /* FeedFactoriesConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CE513B76235C6EA10052C7FA /* FeedFactoriesConstants.m */; };
 		CED92096235370C90069BD90 /* CoreDataMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = CED92095235370C90069BD90 /* CoreDataMigrator.m */; };
+		CEEEB1A323601A97007B23EA /* FeedItemBuilderService.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEEB1A223601A97007B23EA /* FeedItemBuilderService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,6 +221,9 @@
 		CE513B76235C6EA10052C7FA /* FeedFactoriesConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedFactoriesConstants.m; sourceTree = "<group>"; };
 		CED92094235370C90069BD90 /* CoreDataMigrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataMigrator.h; sourceTree = "<group>"; };
 		CED92095235370C90069BD90 /* CoreDataMigrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataMigrator.m; sourceTree = "<group>"; };
+		CEEEB1A023601A5B007B23EA /* FeedItemBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedItemBuilder.h; sourceTree = "<group>"; };
+		CEEEB1A123601A97007B23EA /* FeedItemBuilderService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedItemBuilderService.h; sourceTree = "<group>"; };
+		CEEEB1A223601A97007B23EA /* FeedItemBuilderService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedItemBuilderService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +269,7 @@
 				780726F12319123F000BF435 /* Networking */,
 				780726F02319122D000BF435 /* RSSParser */,
 				780726EF23191207000BF435 /* Model */,
+				CEEEB19F236019E2007B23EA /* Builder */,
 				7808F5EF234F5B2B00A20F61 /* ViewControllers */,
 				780272952313EBFF00EB860B /* AppDelegate.h */,
 				780272962313EBFF00EB860B /* AppDelegate.m */,
@@ -660,6 +665,16 @@
 			path = FileManager;
 			sourceTree = "<group>";
 		};
+		CEEEB19F236019E2007B23EA /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				CEEEB1A023601A5B007B23EA /* FeedItemBuilder.h */,
+				CEEEB1A123601A97007B23EA /* FeedItemBuilderService.h */,
+				CEEEB1A223601A97007B23EA /* FeedItemBuilderService.m */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -756,6 +771,7 @@
 				78FD5E502315036400510D99 /* MainTableViewCell.m in Sources */,
 				7865E876232BCD6F00111BF3 /* SQLFeedItemRepository.m in Sources */,
 				7865E8BB2334C73F00111BF3 /* FileFeedResourceRepository.m in Sources */,
+				CEEEB1A323601A97007B23EA /* FeedItemBuilderService.m in Sources */,
 				7808F5B223479A5C00A20F61 /* SQLManagerConstants.m in Sources */,
 				7808F5AF234792CA00A20F61 /* SQLFeedResourceRepositoryConstants.m in Sources */,
 				780272A82313EC0100EB860B /* main.m in Sources */,

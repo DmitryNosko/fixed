@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FeedItem.h"
-#import "FeedResource.h"
 #import <sqlite3.h>
+#import "FeedItemBuilderService.h"
 
 @interface SQLManager : NSObject {
     sqlite3* rssDataBase;

@@ -21,27 +21,6 @@
     return self;
 }
 
-- (instancetype)initWithID:(NSUUID *) identifier itemTitle:(NSString *) itemTitle link:(NSMutableString *) link pubDate:(NSDate *) pubDate itemDescription:(NSMutableString *) itemDescription enclosure:(NSString *) enclosure imageURL:(NSString *) imageURL isFavorite:(BOOL) isFavorite isReadingInProgress:(BOOL) isReadingInProgress isReadingComplite:(BOOL)isReadingComplite isAvailable:(BOOL) isAvailable resourceURL:(NSURL *) resourceURL resource:(FeedResource *) resource
-{
-    self = [super init];
-    if (self) {
-        _identifier = identifier;
-        _itemTitle = itemTitle;
-        _link = link;
-        _pubDate = pubDate;
-        _itemDescription = itemDescription;
-        _enclosure = enclosure;
-        _imageURL = imageURL;
-        _isFavorite = isFavorite;
-        _isReadingInProgress = isReadingInProgress;
-        _isReadingComplite = isReadingComplite;
-        _isAvailable = isAvailable;
-        _resourceURL = resourceURL;
-        _resource = resource;
-    }
-    return self;
-}
-
 #pragma mark - NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {

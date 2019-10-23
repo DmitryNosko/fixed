@@ -9,6 +9,7 @@
 #import "CoreDataController.h"
 #import "NSFileManager+NSFileManagerCategory.h"
 #import "CoreDataContacts.h"
+#import "FeedItemBuilderService.h"
 
 @implementation CoreDataController
 @synthesize peresistentContainer = _peresistentContainer;
@@ -64,20 +65,22 @@
         if (resourceObject) {
             resource = [[FeedResource alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[resourceObject valueForKey:RESOURCE_ID_KEY]] name:[resourceObject valueForKey:RESOURCE_NAME_KEY] url:[NSURL URLWithString:[resourceObject valueForKey:RESOURCE_URL_KEY]]];
         }
+        FeedItem* item = [[[[[[[[[[[[[[[[FeedItemBuilderService alloc] init]
+                             buildIdentifier:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:ITEM_ID_KEY]]]
+                            buildItemTitle:[obj valueForKey:ITEM_TITLE_KEY]]
+                           buildLink:[obj valueForKey:ITEM_LINK_KEY]]
+                          buildPubDate:[obj valueForKey:ITEM_PUBDATE_KEY]]
+                         buildItemDescription:[obj valueForKey:ITEM_DESCRIPTION_KEY]]
+                        buildEnclosure:[obj valueForKey:ITEM_ENCLOSURE_KEY]]
+                       buildImageURL:[obj valueForKey:ITEM_IMAGE_URL_KEY]]
+                      buildIsFavorite:[[obj valueForKey:ITEM_IS_FAVORITE_KEY] boolValue]]
+                     buildIsReadingInProgress:[[obj valueForKey:ITEM_IS_READING_IN_PROGRESS_KEY] boolValue]]
+                    buildIsReadingComplite:[[obj valueForKey:ITEM_IS_READING_COMPLITE_KEY] boolValue]]
+                   buildIsAvailable:[[obj valueForKey:ITEM_IS_AVAILABLE_KEY] boolValue]]
+                  buildResourceURL:[obj valueForKey:ITEM_FEED_RESOURCE_URL_KEY]]
+                 buildResource:resource]
+                buildFeedItem];
         
-        FeedItem* item = [[FeedItem alloc] initWithID:[[NSUUID alloc] initWithUUIDString:[obj valueForKey:ITEM_ID_KEY]]
-                                            itemTitle:[obj valueForKey:ITEM_TITLE_KEY]
-                                                 link:[obj valueForKey:ITEM_LINK_KEY]
-                                              pubDate:[obj valueForKey:ITEM_PUBDATE_KEY]
-                                      itemDescription:[obj valueForKey:ITEM_DESCRIPTION_KEY]
-                                            enclosure:[obj valueForKey:ITEM_ENCLOSURE_KEY]
-                                             imageURL:[obj valueForKey:ITEM_IMAGE_URL_KEY]
-                                           isFavorite:[[obj valueForKey:ITEM_IS_FAVORITE_KEY] boolValue]
-                                  isReadingInProgress:[[obj valueForKey:ITEM_IS_READING_IN_PROGRESS_KEY] boolValue]
-                                    isReadingComplite:[[obj valueForKey:ITEM_IS_READING_COMPLITE_KEY] boolValue]
-                                          isAvailable:[[obj valueForKey:ITEM_IS_AVAILABLE_KEY] boolValue]
-                                          resourceURL:[obj valueForKey:ITEM_FEED_RESOURCE_URL_KEY]
-                                             resource:resource];
         if (item) {
             [resourceItems addObject:item];
         }
